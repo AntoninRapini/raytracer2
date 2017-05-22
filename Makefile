@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun Mar 19 17:44:38 2017 Antonin Rapini
+## Last update Mon May 22 19:23:11 2017 Antonin Rapini
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
@@ -42,11 +42,11 @@ SRC	=	src/my_put_pixel.c		\
 		sources/my_objects_creation.c	\
 		sources/my_create_objects.c	\
 		sources/my_display.c		\
-		raytracer1.c
+		raytracer2.c
 
 OBJ	=	$(SRC:.c=.o)
 
-NAME	=	raytracer1
+NAME	=	raytracer2
 
 $(NAME): $(OBJ)
 	gcc $(OBJ) -g -lc_graph_prog -lm -o $(NAME)
