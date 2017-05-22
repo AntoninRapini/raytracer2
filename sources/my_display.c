@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Tue Mar 14 22:56:15 2017 Antonin Rapini
+** Last update Mon May 22 15:09:36 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -19,9 +19,9 @@
 void		display_loop(sfRenderWindow *window, t_screenelem *screen, t_scene *scene)
 {
 
-  /* my_draw_scene(screen->frb, scene);
-     sfTexture_updateFromPixels(screen->texture, screen->frb->pixels,
-     screen->frb->width, screen->frb->height, 0, 0);*/
+  my_draw_scene(screen->frb, scene);
+  sfTexture_updateFromPixels(screen->texture, screen->frb->pixels,
+			     screen->frb->width, screen->frb->height, 0, 0);
   while (sfRenderWindow_isOpen(window))
     {
       sfRenderWindow_clear(window, sfBlack);
