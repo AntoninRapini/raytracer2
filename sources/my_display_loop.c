@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Tue May 23 18:30:23 2017 Antonin Rapini
+** Last update Tue May 23 18:53:49 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -58,6 +58,10 @@ void		my_display_loop
     {
       while (sfRenderWindow_pollEvent(window, &event))
 	{
+	  if (sfKeyboard_isKeyPressed(sfKeyEscape) == 1)
+	    sfRenderWindow_close(window);
+	  if (event.type == sfEvtClosed)
+	    sfRenderWindow_close(window);
 	  if (event.type == sfEvtKeyPressed)
 	    {
 	      my_get_transformations(scene);
