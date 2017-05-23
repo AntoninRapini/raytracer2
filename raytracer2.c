@@ -5,15 +5,29 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Dec  3 19:12:53 2016 Antonin Rapini
-** Last update Sun Feb 12 17:57:39 2017 Antonin Rapini
+** Last update Tue May 23 05:56:09 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
 #include "sources.h"
+#include "utils.h"
 
-int main(void)
+int		main(int ac, char **av)
 {
-  if (my_display(1280, 720))
-    return (84);
-  return (0);
+  t_raytracer	*rt;
+
+  if (ac >= 2)
+    {
+      if ((rt = my_create_raytracer(av[1])) != NULL)
+	{
+	  my_display_loop(rt->window, rt->screen, rt->scene);
+	  my_free_raytracer(rt);
+	  return (0);
+	}
+      else
+	my_puterror("Scene creation failed.\n", 0);
+    }
+  else
+    my_puterror("Not enough arguments, configuration file needed.\n", 0);
+  return (84);
 }

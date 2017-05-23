@@ -5,13 +5,13 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Fri Dec  9 01:24:40 2016 Antonin Rapini
+** Last update Mon May 22 23:25:24 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics/RenderWindow.h>
 #include <stdlib.h>
 
-sfRenderWindow		*create_window(char *name, int width, int height)
+sfRenderWindow		*my_create_window(char *name, int width, int height)
 {
   sfRenderWindow	*window;
   sfVideoMode		mode;

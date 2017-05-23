@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Sun Mar 19 18:05:47 2017 Antonin Rapini
+** Last update Tue May 23 04:32:07 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -82,14 +82,14 @@ int	my_fill_objectarray(t_object *objects, int size, int fd)
   return (0);
 }
 
-t_object	*my_create_objects()
+t_object	*my_create_objects(char *file)
 {
   t_object	*objects;
   int		fd;
   char		*buffer;
   int		size;
 
-  if ((fd = open("scenes/scene1", O_RDONLY)) == -1)
+  if ((fd = open(file, O_RDONLY)) == -1)
     return (NULL);
   if ((buffer = get_next_line(fd)) == NULL)
     return (NULL);
