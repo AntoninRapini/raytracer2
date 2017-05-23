@@ -5,17 +5,17 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Mar 19 01:59:31 2017 Antonin Rapini
-** Last update Sun Mar 19 01:59:36 2017 Antonin Rapini
+** Last update Wed May 24 01:00:39 2017 Antonin Rapini
 */
 
 #include "sources.h"
 #include "utils.h"
 
-float my_getdist(t_object *objs, sfVector3f eye, sfVector3f dir, int i)
+float		my_getdist(t_object *objs, sfVector3f eye, sfVector3f dir, int i)
 {
-  sfVector3f pos;
+  sfVector3f	pos;
 
-  pos = my_add_v3(eye, objs[i].position, 1);
+  pos = my_add_v3(eye, objs[i].position, -1);
   if (objs[i].type == 1)
     return (intersect_plane(eye, dir));
   if (objs[i].type == 2)

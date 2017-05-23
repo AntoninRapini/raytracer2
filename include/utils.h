@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:36:09 2016 Antonin Rapini
-** Last update Tue May 23 05:54:06 2017 Antonin Rapini
+** Last update Tue May 23 19:43:22 2017 Antonin Rapini
 */
 
 #ifndef UTILS_H_
@@ -23,8 +23,14 @@ sfColor my_setalpha(sfColor, float);
 t_screenelem *my_create_screenelem(int, int);
 sfVector3f my_create_sfvector3f(float, float, float);
 sfVector3f my_add_v3(sfVector3f, sfVector3f, int);
-int my_puterror(char *, int);
 int my_nbrlen(int);
 void my_memset(void *, int, int);
+
+/* display */
+int my_puterror(char *, int);
+int my_miniprintf(char *, ...);
+void my_putchar(char);
+void my_putstr(char *);
+void my_put_nbr(int);
 
 #endif /* !UTILS_H_ */

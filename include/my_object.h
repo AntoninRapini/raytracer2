@@ -5,11 +5,11 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Tue May 23 04:33:33 2017 Antonin Rapini
+** Last update Wed May 24 00:38:05 2017 Antonin Rapini
 */
 
-#ifndef MY_OBJECTS_H_
-# define MY_OBJECTS_H_
+#ifndef MY_OBJECT_H_
+# define MY_OBJECT_H_
 
 #include <SFML/Graphics.h>
 
@@ -35,7 +35,7 @@ typedef struct	s_intersect
 
 /* sphere.c */
 float intersect_sphere(sfVector3f, sfVector3f, float);
-sfVector3f get_normal_sphere(sfVector3f);
+sfVector3f get_normal_sphere(sfVector3f, sfVector3f, float);
 
 /* cone.c */
 float intersect_cone(sfVector3f, sfVector3f, float);
@@ -50,4 +50,4 @@ sfVector3f get_normal_plane(int);
 float intersect_plane(sfVector3f, sfVector3f);
 
 
-#endif /* !MY_OBJECTS_H_ */
+#endif /* !MY_OBJECT_H_ */

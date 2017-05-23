@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Feb  8 15:12:25 2017 Antonin Rapini
-** Last update Wed Mar  8 17:15:34 2017 Antonin Rapini
+** Last update Wed May 24 00:40:47 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -24,13 +24,10 @@ float intersect_sphere(sfVector3f p, sfVector3f v, float radius)
   return (my_getsolution(a, b, c));
 }
 
-sfVector3f get_normal_sphere(sfVector3f ip)
+sfVector3f get_normal_sphere(sfVector3f pos, sfVector3f ip, float radius)
 {
-  float radius;
-
-  radius = sqrt((ip.x * ip.x) + (ip.y * ip.y) + (ip.z * ip.z));
-  ip.x = ip.x / radius;
-  ip.y = ip.y / radius;
-  ip.z = ip.z / radius;
+  ip.x = (ip.x - pos.x) / radius;
+  ip.y = (ip.y - pos.y) / radius;
+  ip.z = (ip.z - pos.z) / radius;
   return (ip);
 }
