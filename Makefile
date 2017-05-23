@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Tue May 23 05:58:05 2017 Antonin Rapini
+## Last update Tue May 23 18:31:07 2017 Antonin Rapini
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
@@ -37,10 +37,9 @@ SRC	=	src/my_put_pixel.c		\
 		sources/my_get_transformations.c	\
 		sources/my_getcolor.c		\
 		sources/my_scene_utils.c	\
-		sources/my_draw_scene.c		\
 		sources/my_objects_creation.c	\
 		sources/my_create_objects.c	\
-		sources/my_display_loop.c		\
+		sources/my_display_loop.c	\
 		sources/objects/sphere.c	\
 		sources/objects/plane.c		\
 		sources/objects/cylinder.c	\
