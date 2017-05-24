@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Wed May 24 16:16:58 2017 Raphaël Goulmot
+** Last update Wed May 24 18:53:42 2017 Raphaël Goulmot
 */
 
 #include <stdlib.h>
@@ -52,25 +52,22 @@ void my_draw_screen(sfRenderWindow *window, t_screenelem *screen
 void		my_display_loop
 (sfRenderWindow *window, t_screenelem *screen, t_scene *scene)
 {
-  sfEvent	event;
+  bool		lock;
 
+  lock = false;
   scene->window = window;
   scene->screen = screen;
-  my_draw_screen(window, screen, scene);
-  launch_thread(scene);
   while (scene->running && sfRenderWindow_isOpen(window))
     {
-      if (sfRenderWindow_pollEvent(window, &event))
+      if (scene->refresh && !lock)
 	{
-	  if (sfKeyboard_isKeyPressed(sfKeyEscape) == 1
-	      || event.type == sfEvtClosed)
-	    scene->running = false;
-	  else if (event.type == sfEvtKeyPressed)
-	    commands(scene, event.key.code);
-	  else if (event.type == sfEvtKeyReleased)
-	    commands_off(scene, event.key.code);
+	  lock = true;
+	  my_draw_screen(scene->window, scene->screen, scene);
+	  lock = false;
+	  scene->refresh = 0;
 	}
     }
+  launch_thread(scene);
   if (sfRenderWindow_isOpen(window))
     sfRenderWindow_close(window);
 }

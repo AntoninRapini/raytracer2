@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 14:55:37 2017 Raphaël Goulmot
-** Last update Wed May 24 16:14:01 2017 Raphaël Goulmot
+** Last update Wed May 24 18:53:17 2017 Raphaël Goulmot
 */
 
 #include <pthread.h>
@@ -16,18 +16,20 @@
 static void	*background_worker(void *arg)
 {
   t_scene	*scene;
-  bool		lock;
+  sfEvent	event;
 
   scene = (t_scene *)arg;
-  lock = false;
-  while (scene->running)
+  while (scene->running && sfRenderWindow_isOpen(scene->window))
     {
-      if (scene->refresh && !lock)
+      if (sfRenderWindow_pollEvent(scene->window, &event))
 	{
-	  lock = true;
-	  my_draw_screen(scene->window, scene->screen, scene);
-	  lock = false;
-	  scene->refresh = 0;
+	  if (sfKeyboard_isKeyPressed(sfKeyEscape) == 1
+	      || event.type == sfEvtClosed)
+	    scene->running = false;
+	  else if (event.type == sfEvtKeyPressed)
+	    commands(scene, event.key.code);
+	  else if (event.type == sfEvtKeyReleased)
+	    commands_off(scene, event.key.code);
 	}
     }
   pthread_exit(NULL);
