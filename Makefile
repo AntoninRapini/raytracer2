@@ -5,11 +5,11 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Tue May 23 19:43:40 2017 Antonin Rapini
+## Last update Wed May 24 15:30:42 2017 Raphaël Goulmot
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
-CFLAGS 	+= -I include -g3
+CFLAGS 	+= -lpthread -lm -lc_graph_prog -I include -g3
 
 SRC	=	src/my_put_pixel.c		\
 		src/calc_dir_vector.c		\
@@ -30,6 +30,8 @@ SRC	=	src/my_put_pixel.c		\
 		utils/get_next_line.c		\
 		utils/my_puterror.c		\
 		utils/my_memset.c		\
+		sources/my_background_worker.c	\
+		sources/my_commands.c		\
 		sources/my_create_window.c	\
 		sources/my_screenelem_utils.c	\
 		sources/my_raytracer_utils.c	\
@@ -53,7 +55,7 @@ OBJ	=	$(SRC:.c=.o)
 NAME	=	raytracer2
 
 $(NAME): $(OBJ)
-	gcc $(OBJ) -g -lc_graph_prog -lm -o $(NAME)
+	gcc $(OBJ) -o $(NAME) $(CFLAGS)
 
 all: $(NAME)
 

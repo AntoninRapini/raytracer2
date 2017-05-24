@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Tue May 23 06:14:05 2017 Antonin Rapini
+** Last update Wed May 24 15:45:47 2017 Raphaël Goulmot
 */
 
 #ifndef SOURCES_H_
@@ -34,6 +34,8 @@ float my_getdist(t_object *, sfVector3f, sfVector3f, int);
 void my_get_transformations(t_scene *scene);
 
 /* my_display_loop.c */
+void my_draw_scene(t_my_framebuffer *, t_scene *);
+void my_draw_screen(sfRenderWindow *, t_screenelem *, t_scene *);
 void my_display_loop(sfRenderWindow *, t_screenelem *, t_scene *);
 
 /* my_framebuffer_utils.c */
@@ -56,5 +58,12 @@ t_light my_create_light(sfColor, int, sfVector3f);
 t_scene *my_create_scene(char *);
 t_scene *my_init_scene();
 void *my_free_scene();
+
+/* my_background_worker.c */
+void launch_thread(t_scene *);
+
+/* my_commands.c */
+void commands(t_scene *, int);
+void commands_off(t_scene *, int);
 
 #endif /* !SOURCES_H_ */
