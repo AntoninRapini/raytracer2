@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Wed May 24 00:38:05 2017 Antonin Rapini
+** Last update Wed May 24 22:42:40 2017 Antonin Rapini
 */
 
 #ifndef MY_OBJECT_H_
@@ -34,20 +34,19 @@ typedef struct	s_intersect
 }		t_intersect;
 
 /* sphere.c */
-float intersect_sphere(sfVector3f, sfVector3f, float);
-sfVector3f get_normal_sphere(sfVector3f, sfVector3f, float);
+float intersect_sphere(t_object *, sfVector3f, sfVector3f);
+sfVector3f get_normal_sphere(t_object *, sfVector3f);
 
 /* cone.c */
-float intersect_cone(sfVector3f, sfVector3f, float);
-sfVector3f get_normal_cone(sfVector3f, float);
+float intersect_cone(t_object *, sfVector3f, sfVector3f);
+sfVector3f get_normal_cone(t_object *, sfVector3f);
 
 /* cylinder.c */
-float intersect_cylinder(sfVector3f, sfVector3f, float);
-sfVector3f get_normal_cylinder(sfVector3f);
+float intersect_cylinder(t_object *, sfVector3f, sfVector3f);
+sfVector3f get_normal_cylinder(t_object *, sfVector3f);
 
 /* plane.c */
-sfVector3f get_normal_plane(int);
-float intersect_plane(sfVector3f, sfVector3f);
-
+float intersect_plane(t_object *, sfVector3f, sfVector3f);
+sfVector3f get_normal_plane(t_object *, sfVector3f);
 
 #endif /* !MY_OBJECT_H_ */

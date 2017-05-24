@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Wed May 24 15:30:42 2017 Raphaël Goulmot
+## Last update Wed May 24 22:39:54 2017 Antonin Rapini
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
@@ -30,6 +30,7 @@ SRC	=	src/my_put_pixel.c		\
 		utils/get_next_line.c		\
 		utils/my_puterror.c		\
 		utils/my_memset.c		\
+		sources/my_get_normal.c		\
 		sources/my_background_worker.c	\
 		sources/my_commands.c		\
 		sources/my_create_window.c	\
@@ -37,7 +38,7 @@ SRC	=	src/my_put_pixel.c		\
 		sources/my_raytracer_utils.c	\
 		sources/my_framebuffer_utils.c	\
 		sources/my_process_light.c	\
-		sources/my_getdist.c		\
+		sources/my_get_dist.c		\
 		sources/my_get_transformations.c	\
 		sources/my_getcolor.c		\
 		sources/my_scene_utils.c	\

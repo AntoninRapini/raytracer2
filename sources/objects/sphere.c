@@ -5,29 +5,29 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Feb  8 15:12:25 2017 Antonin Rapini
-** Last update Wed May 24 00:40:47 2017 Antonin Rapini
+** Last update Wed May 24 22:24:39 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
 #include <math.h>
 #include "sources.h"
 
-float intersect_sphere(sfVector3f p, sfVector3f v, float radius)
+float	intersect_sphere(t_object *obj, sfVector3f pos, sfVector3f dir)
 {
   float a;
   float b;
   float c;
 
-  a = pow(v.x, 2) + pow(v.y, 2) + pow(v.z, 2);
-  b = 2 * (p.x * v.x + p.y * v.y + p.z * v.z);
-  c = pow(p.x, 2) + pow(p.y, 2) + pow(p.z, 2) - pow(radius, 2);
+  a = pow(dir.x, 2) + pow(dir.y, 2) + pow(dir.z, 2);
+  b = 2 * (pos.x * dir.x + pos.y * dir.y + pos.z * dir.z);
+  c = pow(pos.x, 2) + pow(pos.y, 2) + pow(pos.z, 2) - pow(obj->info, 2);
   return (my_getsolution(a, b, c));
 }
 
-sfVector3f get_normal_sphere(sfVector3f pos, sfVector3f ip, float radius)
+sfVector3f get_normal_sphere(t_object *obj, sfVector3f ip)
 {
-  ip.x = (ip.x - pos.x) / radius;
-  ip.y = (ip.y - pos.y) / radius;
-  ip.z = (ip.z - pos.z) / radius;
+  ip.x = (ip.x - obj->position.x) / obj->info;
+  ip.y = (ip.y - obj->position.y) / obj->info;
+  ip.z = (ip.z - obj->position.z) / obj->info;
   return (ip);
 }

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Mar 18 17:53:32 2017 Antonin Rapini
-** Last update Wed May 24 01:01:12 2017 Antonin Rapini
+** Last update Wed May 24 22:43:23 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -38,12 +38,8 @@ sfColor		my_process_light(t_scene *scene, t_intersect *intsct)
   i = 0;
   while (scene->lights[i].brightness)
     {
-      //dir = my_add_v3(intsct->pos, scene->lights[i].position, -1);
       dir = my_add_v3(scene->lights[i].position, intsct->pos, -1);
-      //printf("light pos : %.2f %.2f %.2f\n", scene->lights[i].position.x, scene->lights[i].position.y, scene->lights[i].position.z);
-      //printf("dir : %.2f %.2f %.2f\n", dir.x, dir.y, dir.z);
       cos = get_light_coef(dir, intsct->normal);
-      //     printf("cos : %.2f\n", cos);
       angle = acos(cos) * (180 / M_PI);
       if (angle <= 90)
 	{
@@ -53,7 +49,7 @@ sfColor		my_process_light(t_scene *scene, t_intersect *intsct)
 	    {
 	      if (j != intsct->obji)
 		{
-		  currdist = my_getdist(scene->objects, intsct->pos, dir, j);
+		  currdist = my_get_dist(scene->objects + j, intsct->pos, dir);
 		  if (currdist >= 0 && currdist <= 1)
 		    color = my_addlight(color, 0);
 		}
