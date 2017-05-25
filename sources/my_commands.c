@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu May 25 21:45:54 2017 Raphaël Goulmot
+** Last update Thu May 25 21:57:35 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -33,15 +33,18 @@ void		commands_off(t_scene *scene, int key)
     {
       if (key == sfKeyPageUp || key == sfKeyPageDown)
 	{
-	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object]))
-	    obj->brillance = 0;
+	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object])->type)
+	    obj->brillance = 64;
 	  scene->i_object += sfKeyPageUp == key ? 1 : -1;
 	  if (scene->i_object < -1)
 	    scene->i_object = -1;
-	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object]))
+	  else if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object])->type)
 	    obj->brillance = 64;
-	  if (scene->i_object > -1 && !obj)
-	    scene->i_object--;
+	  else if (scene->i_object > -1 && !obj->type)
+	    scene->i_object += sfKeyPageUp == key ? -1 : 1;
+	  my_putstr("Obj pos: ");
+	  my_put_nbr(scene->i_object);
+	  my_putchar('\n');
 	}
       scene->key_pressed = -1;
       scene->refresh = true;
