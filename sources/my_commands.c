@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu May 25 21:57:35 2017 Raphaël Goulmot
+** Last update Thu May 25 22:10:24 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -34,7 +34,7 @@ void		commands_off(t_scene *scene, int key)
       if (key == sfKeyPageUp || key == sfKeyPageDown)
 	{
 	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object])->type)
-	    obj->brillance = 64;
+	    obj->brillance = 0;
 	  scene->i_object += sfKeyPageUp == key ? 1 : -1;
 	  if (scene->i_object < -1)
 	    scene->i_object = -1;

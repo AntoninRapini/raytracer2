@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Thu May 25 21:41:42 2017 Raphaël Goulmot
+** Last update Thu May 25 22:05:12 2017 Raphaël Goulmot
 */
 
 #include <stdlib.h>
@@ -53,14 +53,11 @@ void		my_display_loop
 (sfRenderWindow *window, t_screenelem *screen, t_scene *scene)
 {
   bool		lock;
-  int		wait;
 
   lock = false;
-  wait = 100000;
   scene->window = window;
   scene->screen = screen;
   my_draw_screen(scene->window, scene->screen, scene);
-  while (wait--);
   launch_thread(scene);
   while (scene->running && sfRenderWindow_isOpen(window))
     {

@@ -5,11 +5,11 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Wed May 24 22:39:54 2017 Antonin Rapini
+## Last update Thu May 25 22:04:41 2017 Raphaël Goulmot
 ##
 
 CFLAGS	+= -Wall -Werror -Wextra
-CFLAGS 	+= -lpthread -lm -lc_graph_prog -I include -g3
+CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
 
 SRC	=	src/my_put_pixel.c		\
 		src/calc_dir_vector.c		\
