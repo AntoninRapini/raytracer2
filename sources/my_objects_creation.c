@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 22:45:58 2017 Antonin Rapini
-** Last update Sun Mar 19 19:18:51 2017 Antonin Rapini
+** Last update Thu May 25 02:41:43 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -39,7 +39,7 @@ t_object	my_create_plane(sfColor color)
   return (plane);
 }
 
-t_light		my_create_light(sfColor color, int brightness, sfVector3f pos)
+t_light		my_create_light(sfColor color, float brightness, sfVector3f pos)
 {
   t_light	light;
 

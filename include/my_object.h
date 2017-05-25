@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Wed May 24 22:42:40 2017 Antonin Rapini
+** Last update Thu May 25 22:45:12 2017 Antonin Rapini
 */
 
 #ifndef MY_OBJECT_H_
@@ -21,14 +21,17 @@ typedef struct	s_object
   sfColor	color;
   int		info;
   float		brillance;
+  float		transparency;
 }		t_object;
 
 typedef struct	s_intersect
 {
+  sfVector3f	dir;
   sfVector3f   	pos;
   sfVector3f	origin;
   float		dist;
   int		obji;
+  int		shadowed;
   sfVector3f   	normal;
   t_object	obj;
 }		t_intersect;

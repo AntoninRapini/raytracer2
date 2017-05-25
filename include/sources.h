@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Wed May 24 22:44:09 2017 Antonin Rapini
+** Last update Thu May 25 19:36:51 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
@@ -35,6 +35,12 @@ void my_get_transformations(t_scene *scene);
 float my_get_dist(t_object *, sfVector3f, sfVector3f);
 sfVector3f my_get_normal(t_object *, sfVector3f);
 
+/* my_vector3_utils.c */
+float my_dot_product(sfVector3f, sfVector3f);
+sfVector3f norm_v3(sfVector3f);
+sfVector3f my_add_v3(sfVector3f, sfVector3f, int);
+sfVector3f my_mul_v3(sfVector3f, float);
+
 /* my_display_loop.c */
 void my_draw_scene(t_my_framebuffer *, t_scene *);
 void my_draw_screen(sfRenderWindow *, t_screenelem *, t_scene *);
@@ -56,7 +62,7 @@ t_screenelem *my_init_screenelem();
 void *my_free_screenelem(t_screenelem *);
 
 /* my_scene_utils.c */
-t_light my_create_light(sfColor, int, sfVector3f);
+t_light my_create_light(sfColor, float, sfVector3f);
 t_scene *my_create_scene(char *);
 t_scene *my_init_scene();
 void *my_free_scene();
@@ -67,5 +73,9 @@ void launch_thread(t_scene *);
 /* my_commands.c */
 void commands(t_scene *, int);
 void commands_off(t_scene *, int);
+
+/* my_color_utils.c */
+sfColor my_mul_color(sfColor, float);
+sfColor my_add_colors(sfColor, sfColor);
 
 #endif /* !SOURCES_H_ */

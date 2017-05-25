@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Tue May 23 04:32:07 2017 Antonin Rapini
+** Last update Thu May 25 21:11:22 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -27,7 +27,7 @@ int my_fill_objectinfos(int *infos, int i, t_object *objs)
   objs[i].color.g = infos[9];
   objs[i].color.b = infos[10];
   objs[i].color.a = infos[11];
-  objs[i].brillance = (float)infos[12] / 100;
+  objs[i].brillance = (float)infos[12];
   if (objs[i].type > 4 || objs[i].type < 1)
     return (1);
   return (0);

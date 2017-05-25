@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:27:50 2017 Antonin Rapini
-** Last update Wed May 24 22:48:50 2017 Antonin Rapini
+** Last update Thu May 25 21:19:09 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -20,6 +20,7 @@ void	my_get_intersect
   float	currdist;
 
   currdist = -1;
+  intsct->dir = dir;
   intsct->origin = eye;
   intsct->dist = -1;
   i = 0;
