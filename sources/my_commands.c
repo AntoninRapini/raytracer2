@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Wed May 24 16:13:45 2017 Raphaël Goulmot
+** Last update Thu May 25 21:45:54 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -25,10 +25,24 @@ void	commands(t_scene *scene, int key)
   scene->refresh = true;
 }
 
-void	commands_off(t_scene *scene, int key)
+void		commands_off(t_scene *scene, int key)
 {
+  t_object	*obj;
+
   if (scene->key_pressed == key)
     {
+      if (key == sfKeyPageUp || key == sfKeyPageDown)
+	{
+	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object]))
+	    obj->brillance = 0;
+	  scene->i_object += sfKeyPageUp == key ? 1 : -1;
+	  if (scene->i_object < -1)
+	    scene->i_object = -1;
+	  if (scene->i_object > -1 && (obj = &scene->objects[scene->i_object]))
+	    obj->brillance = 64;
+	  if (scene->i_object > -1 && !obj)
+	    scene->i_object--;
+	}
       scene->key_pressed = -1;
       scene->refresh = true;
     }
