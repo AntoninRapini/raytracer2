@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 22 21:38:56 2017 Antonin Rapini
-** Last update Wed May 24 22:25:32 2017 Antonin Rapini
+** Last update Thu May 25 17:51:02 2017 Antonin Rapini
 */
 
 #ifndef MY_RAYTRACER_H_

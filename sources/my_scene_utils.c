@@ -5,20 +5,21 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:11:19 2017 Antonin Rapini
-** Last update Wed May 24 15:40:37 2017 Raphaël Goulmot
+** Last update Thu May 25 21:32:20 2017 Antonin Rapini
 */
 
 #include "utils.h"
 #include "sources.h"
 #include <stdlib.h>
 
-t_light		*my_create_lights()
+t_light         *my_create_lights()
 {
-  t_light	*lights;
+  t_light       *lights;
 
-  if ((lights = malloc(sizeof(t_light) * 2)) == NULL)
+  if ((lights = malloc(sizeof(t_light) * 3)) == NULL)
     return (NULL);
-  lights[0] = my_create_light(sfYellow, 1, my_create_sfvector3f(0, 0, 200));
+  lights[0] = my_create_light(sfWhite, 0.8f, my_create_sfvector3f(0, 0, 200));
+  lights[1] = my_create_light(sfWhite, 0.8f, my_create_sfvector3f(0, 200, 200));
   lights[1].brightness = 0;
   return (lights);
 }
