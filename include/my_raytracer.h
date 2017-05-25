@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 22 21:38:56 2017 Antonin Rapini
-** Last update Thu May 25 17:51:02 2017 Antonin Rapini
+** Last update Thu May 25 21:58:36 2017 Antonin Rapini
 */
 
 #ifndef MY_RAYTRACER_H_
@@ -40,6 +40,7 @@ typedef struct		s_scene
 {
   bool			refresh;
   bool			running;
+  int			i_object;
   int			key_pressed;
   sfRenderWindow	*window;
   t_screenelem		*screen;
