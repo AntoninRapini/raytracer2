@@ -1,0 +1,6 @@
+PageUp = Selectionner un autre objet +
+PageDown = Selectionner un autre objet -
+Haut/bas = Avant/Reculer
+Gauche/Droite = Aller à Gauche/Droite
+Z/S = Avancer/Reculer l'objet sélectionner
+Q/D = Déplcer l'objet sélectionner à Gauche/Droite
