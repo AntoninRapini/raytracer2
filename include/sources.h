@@ -5,16 +5,16 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 19:28:09 2017 Raphaël Goulmot
+** Last update Sun May 28 20:10:31 2017 romain pillot
 */
 
 #ifndef SOURCES_H_
 # define SOURCES_H_
 
-#include "my_raytracer.h"
-#include <pthread.h>
-
-#define READ_SIZE 1024
+# include "my_raytracer.h"
+# include <pthread.h>
+# include "config.h"
+# define READ_SIZE 1024
 
 void	my_handlekeypress(t_my_framebuffer *, float);
 void	my_draw_scene(t_my_framebuffer *, t_scene *);
@@ -27,7 +27,7 @@ float my_getsolution(float, float, float);
 float get_light_coef(sfVector3f, sfVector3f);
 t_object my_create_sphere(int, sfColor);
 t_object my_create_plane(sfColor);
-t_object *my_create_objects();
+t_object *my_create_objects(t_config *config);
 char *get_next_line(int);
 sfColor my_process_light(t_scene *, t_intersect *);
 void my_get_transformations(t_scene *scene);

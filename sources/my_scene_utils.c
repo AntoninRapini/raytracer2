@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:11:19 2017 Antonin Rapini
-** Last update Sun May 28 18:54:34 2017 Raphaël Goulmot
+** Last update Sun May 28 20:05:41 2017 romain pillot
 */
 
 #include "utils.h"
@@ -60,14 +60,20 @@ t_scene		*my_init_scene()
 t_scene		*my_create_scene(char *file)
 {
   t_scene	*scene;
+  t_config	*config;
 
-  if ((scene = my_init_scene()) == NULL)
+  if ((scene = my_init_scene()) == NULL ||
+      !(config = config_load(file)))
     return (NULL);
-  scene->eye_pos = my_create_sfvector3f(-200, 0, 20);
-  scene->screen_size.x = 1280;
-  scene->screen_size.y = 720;
-  if ((scene->objects = my_create_objects(file)) == NULL)
+  scene->eye_pos = my_create_sfvector3f(
+					get_integer(config, "properties.eye.position.x"),
+					get_integer(config, "properties.eye.position.y"),
+					get_integer(config, "properties.eye.position.z"));
+  scene->screen_size.x = get_integer(config, "properties.screen.width");
+  scene->screen_size.y = get_integer(config, "properties.screen.height");
+  if ((scene->objects = my_create_objects(config)) == NULL)
     return (my_free_scene(scene));
+  config_destroy(config);
   if ((scene->lights = my_create_lights()) == NULL)
     return (my_free_scene(scene));
   return (scene);

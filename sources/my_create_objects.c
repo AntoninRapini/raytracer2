@@ -5,18 +5,10 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Sun May 28 02:54:59 2017 Antonin Rapini
+** Last update Sun May 28 20:17:54 2017 romain pillot
 */
 
-#include "sources.h"
-#include "utils.h"
-#include "my_object.h"
-#include <stdlib.h>
-#include <fcntl.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-#include <stdio.h>
+#include "config.h"
 
 int my_fill_objectinfos(int *infos, int i, t_object *objs)
 {
@@ -36,73 +28,28 @@ int my_fill_objectinfos(int *infos, int i, t_object *objs)
   return (0);
 }
 
-int		my_parse_objectline
-(char *buffer, t_object *objs, int objindex)
+t_object	*create_object(t_key *key)
 {
+  t_object	*object;
+
+  if (!(object = malloc(sizeof(t_object))))
+    return (NULL);
+  
+}
+
+t_object	*my_create_objects(t_config *config)
+{
+  t_key		*objects;
+  t_key		**keys;
+  t_array	*array;
   int		i;
-  int		j;
-  int		infos[15];
 
-  j = 0;
-  i = 0;
-  while (buffer[i])
-    {
-      while (buffer[i] && !(buffer[i] >= '0' && buffer[i] <= '9') && buffer[i] != '-')
-	i++;
-      if (j >= 15)
-	return (1);
-      if (buffer[i])
-	{
-	  infos[j] = my_getnbr(buffer + i);
-	  i += my_nbrlen(infos[j]);
-	  j++;
-	}
-    }
-  if (j != 15)
-    return (1);
-  return (my_fill_objectinfos(infos, objindex, objs));
-}
-
-int	my_fill_objectarray(t_object *objects, int size, int fd)
-{
-  int	i;
-  char	*buffer;
-
-  i = 0;
-  while (i < size)
-    {
-      if ((buffer = get_next_line(fd)) != NULL)
-	{
-	  if (my_parse_objectline(buffer, objects, i))
-	    return (1);
-	  free(buffer);
-	  i++;
-	}
-      else
-	return (1);
-    }
-  objects[size].type = 0;
-  return (0);
-}
-
-t_object	*my_create_objects(char *file)
-{
-  t_object	*objects;
-  int		fd;
-  char		*buffer;
-  int		size;
-
-  if ((fd = open(file, O_RDONLY)) == -1)
+  if (!(array = array_create()))
     return (NULL);
-  if ((buffer = get_next_line(fd)) == NULL)
-    return (NULL);
-  size = my_getnbr(buffer);
-  free(buffer);
-  if (size <= 0 || size > 20)
-    return (NULL);
-  if ((objects = malloc(sizeof(t_object) * (size + 1))) == NULL)
-    return (NULL);
-  if (my_fill_objectarray(objects, size, fd))
-    return (NULL);
-  return (objects);
+  objects = get_key(config, "objects");
+  keys = (t_key **) objects->value;
+  i = -1;
+  while (keys[++i])
+    array_add(array, create_object(keys[i]));
+  return (array);
 }
