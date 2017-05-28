@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 22:45:58 2017 Antonin Rapini
-** Last update Thu May 25 02:41:43 2017 Antonin Rapini
+** Last update Sun May 28 02:22:20 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -39,13 +39,16 @@ t_object	my_create_plane(sfColor color)
   return (plane);
 }
 
-t_light		my_create_light(sfColor color, float brightness, sfVector3f pos)
+t_light		my_create_light(sfColor color, sfVector3f infos, sfVector3f pos)
 {
   t_light	light;
 
   light.position = pos;
   light.rotation = my_create_sfvector3f(0, 0, 0);
   light.color = color;
-  light.brightness = brightness;
+  light.brightness = infos.x;
+  light.diffuse = infos.y;
+  light.specular = infos.z;
+  light.radius = 90000;
   return (light);
 }
