@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Jan  1 16:54:57 2017 Antonin Rapini
-** Last update Wed May 24 22:28:44 2017 Antonin Rapini
+** Last update Sat May 27 16:49:44 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -23,11 +23,12 @@ float	intersect_cylinder(t_object *obj, sfVector3f pos, sfVector3f dir)
   return (my_getsolution(a, b, c));
 }
 
-sfVector3f get_normal_cylinder(t_object *obj, sfVector3f ip)
+sfVector3f	get_normal_cylinder(t_object *obj, sfVector3f ip)
 {
-  if (obj)
-    {
-    }
-  ip.z = 0;
-  return (ip);
+  sfVector3f	tmp;
+
+  tmp.x = ip.x - obj->position.x;
+  tmp.y = ip.y - obj->position.y;
+  tmp.z = 0;
+  return (tmp);
 }

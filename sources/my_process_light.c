@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Mar 18 17:53:32 2017 Antonin Rapini
-** Last update Fri May 26 00:06:27 2017 Antonin Rapini
+** Last update Sun May 28 16:07:08 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -13,63 +13,48 @@
 #include <math.h>
 #include <stdio.h>
 
-sfColor		my_addlight(t_light *light, sfColor color, float angle, float specular)
+sfColor		my_addlight(t_rayhitinfos *infos, t_light *light, t_object *obj)
 {
   sfColor	new;
+  int		r;
+  int		g;
+  int		b;
+  /*float		attenuation;
 
-  new.r = color.r * light->brightness * angle + specular * 50;
-  new.g = color.g * light->brightness * angle + specular * 50;
-  new.b = color.b * light->brightness * angle + specular * 50;
+    attenuation = 1 / 1 + (pow(infos->distance, 2) * 0.0000001);*/
+  r = ((obj->color.r + light->color.r) * (1 - obj->reflection)) + (infos->reflection.r * obj->reflection);
+  g = ((obj->color.g + light->color.g) * (1 - obj->reflection)) + (infos->reflection.g * obj->reflection);
+  b = ((obj->color.b + light->color.b) * (1 - obj->reflection)) + (infos->reflection.b * obj->reflection);
+  r *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
+  g *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
+  b *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
   new.a = 255;
+  new.r = r > 255 ? 255 : r < 0 ? 0 : r;
+  new.g = g > 255 ? 255 : g < 0 ? 0 : g;
+  new.b = b > 255 ? 255 : b < 0 ? 0 : b;
   return (new);
-}
-
-sfColor		my_process_light2
-(t_light *light, sfColor color, t_intersect *intsct, t_scene *scene)
-{
-  sfVector3f	dir;
-  sfVector3f	reflection_vector;
-  float		cos;
-  float		angle;
-  float		specular;
-  int		j;
-  int		currdist;
-  int		shadowed;
-  
-  shadowed = 0;
-  dir = my_add_v3(light->position, intsct->pos, -1);
-  cos = my_dot_product(norm_v3(dir), norm_v3(intsct->normal));
-  reflection_vector = my_add_v3(my_mul_v3(norm_v3(intsct->normal), 2 * my_dot_product(norm_v3(dir), norm_v3(intsct->normal))), norm_v3(dir), -1);
-  specular = pow(my_dot_product(norm_v3(intsct->dir), norm_v3(reflection_vector)), intsct->obj.brillance);
-  angle = acos(cos) * (180 / M_PI);
-  j = 0;
-  while (scene->objects[j].type)
-    {
-      if (j != intsct->obji)
-	{
-	  currdist = my_get_dist(scene->objects + j, intsct->pos, dir);
-	  if (currdist >= 0 && currdist <= 1)
-	    shadowed++;
-	}
-      j++;
-    }
-  if (!shadowed && angle <= 90)
-    color = my_addlight(light, intsct->obj.color, cos, specular);
-  return (color);
 }
 
 sfColor		my_process_light(t_scene *scene, t_intersect *intsct)
 {
   int		i;
   sfColor	color;
+  sfColor	newcolor;
+  t_rayhitinfos	rayhitinfos;
 
-  color = sfBlack;
+  newcolor = sfBlack;
+  color = my_mul_color(intsct->obj.color, 0.2);
   i = 0;
   while (scene->lights[i].brightness)
     {
-      color = my_process_light2(scene->lights + i, color, intsct, scene);
+      my_fill_rayhitinfos(scene, i, intsct, &rayhitinfos);
+      if (!rayhitinfos.shadowed)
+	{
+	  newcolor = my_add_colors(newcolor,
+				   my_addlight(&rayhitinfos, scene->lights + i, &(intsct->obj)));
+	}
       i++;
     }
-  color = my_add_colors(color, my_mul_color(intsct->obj.color, 0.2));
+  color = my_add_colors(color, newcolor);
   return (color);
 }

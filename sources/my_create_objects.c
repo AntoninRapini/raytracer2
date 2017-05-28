@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Thu May 25 21:11:22 2017 Antonin Rapini
+** Last update Sun May 28 02:54:59 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -16,6 +16,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 int my_fill_objectinfos(int *infos, int i, t_object *objs)
 {
@@ -28,6 +29,8 @@ int my_fill_objectinfos(int *infos, int i, t_object *objs)
   objs[i].color.b = infos[10];
   objs[i].color.a = infos[11];
   objs[i].brillance = (float)infos[12];
+  objs[i].reflection = (float)infos[13] / 100;
+  objs[i].transparency = infos[14] / 100;
   if (objs[i].type > 4 || objs[i].type < 1)
     return (1);
   return (0);
@@ -38,7 +41,7 @@ int		my_parse_objectline
 {
   int		i;
   int		j;
-  int		infos[13];
+  int		infos[15];
 
   j = 0;
   i = 0;
@@ -46,7 +49,7 @@ int		my_parse_objectline
     {
       while (buffer[i] && !(buffer[i] >= '0' && buffer[i] <= '9') && buffer[i] != '-')
 	i++;
-      if (j >= 13)
+      if (j >= 15)
 	return (1);
       if (buffer[i])
 	{
@@ -55,7 +58,7 @@ int		my_parse_objectline
 	  j++;
 	}
     }
-  if (j != 13)
+  if (j != 15)
     return (1);
   return (my_fill_objectinfos(infos, objindex, objs));
 }
