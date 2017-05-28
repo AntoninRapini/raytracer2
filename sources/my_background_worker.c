@@ -5,10 +5,9 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 14:55:37 2017 Raphaël Goulmot
-** Last update Thu May 25 22:04:19 2017 Raphaël Goulmot
+** Last update Sun May 28 19:06:12 2017 Raphaël Goulmot
 */
 
-#include <pthread.h>
 #include <X11/Xlib.h>
 #include <unistd.h>
 #include "sources.h"
@@ -36,11 +35,9 @@ static void	*background_worker(void *arg)
   pthread_exit(NULL);
 }
 
-void	launch_thread(t_scene *scene)
+void	launch_thread(t_scene *scene, pthread_t *bg)
 {
-  pthread_t	bg;
-
   XInitThreads();
-  if (pthread_create(&bg, NULL, background_worker, (void *)scene) == -1)
+  if (pthread_create(bg, NULL, background_worker, (void *)scene) == -1)
     my_puterror("Thread creation failed.\n", 0);
 }
