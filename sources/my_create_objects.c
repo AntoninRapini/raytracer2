@@ -1,11 +1,11 @@
 /*
-** my_create_objects.c for raytacer1 in /home/antonin.rapini/ModulesTek1/GraphicalProgramming/raytracer1/sources
+** my_create_objects.c for  in /home/romain.pillot/projects/raytracer2
 ** 
-** Made by Antonin Rapini
-** Login   <antonin.rapini@epitech.net>
+** Made by romain pillot
+** Login   <romain.pillot@epitech.net>
 ** 
-** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Sun May 28 21:34:28 2017 romain pillot
+** Started on  Sun May 28 21:44:13 2017 romain pillot
+** Last update Sun May 28 21:44:14 2017 romain pillot
 */
 
 #include <stdlib.h>

@@ -5,12 +5,11 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun May 28 00:24:08 2017 Antonin Rapini
-** Last update Sun May 28 21:01:13 2017 Antonin Rapini
+** Last update Sun May 28 23:08:13 2017 Antonin Rapini
 */
 
 #include <math.h>
 #include "sources.h"
-#include <stdio.h>
 
 void my_fill_rayhitinfos
 (t_scene *scene, int i, t_intersect *intsct, t_rayhitinfos *infos)

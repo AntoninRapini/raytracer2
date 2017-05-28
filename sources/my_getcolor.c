@@ -5,13 +5,12 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:27:50 2017 Antonin Rapini
-** Last update Sun May 28 19:36:17 2017 Antonin Rapini
+** Last update Sun May 28 23:09:58 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
 #include "sources.h"
 #include "utils.h"
-#include <stdio.h>
 
 void	my_get_intersect
 (t_object *objs, sfVector3f eye, sfVector3f dir, t_intersect *intsct)
