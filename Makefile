@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun May 28 18:25:41 2017 romain pillot
+## Last update Sun May 28 21:51:09 2017 Antonin Rapini
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -44,6 +44,7 @@ SRC	=	config/boolean.c		\
 		utils/get_next_line.c		\
 		utils/my_puterror.c		\
 		utils/my_memset.c		\
+		sources/my_get_background_color.c	\
 		sources/my_fill_rayhitinfos.c	\
 		sources/my_get_reflection.c	\
 		sources/my_phong_utils.c	\

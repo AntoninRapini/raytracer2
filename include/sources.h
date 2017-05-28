@@ -1,11 +1,11 @@
 /*
-** sources.h for wireframe in /home/antonin.rapini/ModulesTek1/GraphicalProgramming/wireframe/include
+** sources.h for  in /home/romain.pillot/projects/raytracer2
 ** 
-** Made by Antonin Rapini
-** Login   <antonin.rapini@epitech.net>
+** Made by romain pillot
+** Login   <romain.pillot@epitech.net>
 ** 
-** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 20:10:31 2017 romain pillot
+** Started on  Sun May 28 20:25:44 2017 romain pillot
+** Last update Sun May 28 20:25:46 2017 romain pillot
 */
 
 #ifndef SOURCES_H_
@@ -79,6 +79,7 @@ sfColor my_get_reflection(t_intersect *, sfVector3f, t_scene *);
 /* my_phong_utils.c */
 float my_get_diffuse_coeff(sfVector3f, sfVector3f);
 sfVector3f my_get_reflection_vector(sfVector3f, t_intersect *);
+sfVector3f my_get_refraction_vector(sfVector3f, t_intersect *);
 int my_is_shadowed(sfVector3f, t_scene *, t_intersect *, float);
 float my_get_distance(sfVector3f, sfVector3f);
 
@@ -100,5 +101,8 @@ sfColor create_color(int, int, int);
 
 /* my_minimap.c */
 void display_minimap(t_scene *);
+
+/* my_get_background_color.c */
+sfColor my_get_background_color();
 
 #endif /* !SOURCES_H_ */

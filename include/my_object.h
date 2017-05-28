@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Sun May 28 18:55:31 2017 Raphaël Goulmot
+** Last update Sun May 28 19:33:39 2017 Antonin Rapini
 */
 
 #ifndef MY_OBJECT_H_
@@ -23,6 +23,7 @@ typedef struct	s_object
   int		info;
   float		brillance;
   float		transparency;
+  float		refraction_i;
   float		reflection;
 }		t_object;
 

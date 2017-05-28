@@ -1,11 +1,11 @@
 /*
-** my_create_scene.c for raytracer1 in /home/antonin.rapini/ModulesTek1/GraphicalProgramming/raytracer1/sources
+** my_scene_utils.c for  in /home/romain.pillot/projects/raytracer2
 ** 
-** Made by Antonin Rapini
-** Login   <antonin.rapini@epitech.net>
+** Made by romain pillot
+** Login   <romain.pillot@epitech.net>
 ** 
-** Started on  Tue Mar  7 19:11:19 2017 Antonin Rapini
-** Last update Sun May 28 20:05:41 2017 romain pillot
+** Started on  Sun May 28 20:26:03 2017 romain pillot
+** Last update Sun May 28 20:26:17 2017 romain pillot
 */
 
 #include "utils.h"
@@ -18,8 +18,12 @@ t_light         *my_create_lights()
 
   if ((lights = malloc(sizeof(t_light) * 3)) == NULL)
     return (NULL);
-  lights[0] = my_create_light(sfWhite, my_create_sfvector3f(0.8f, 0.8f, 0.5f) , my_create_sfvector3f(-200, 0, 100));
-  lights[1] = my_create_light(sfBlue, my_create_sfvector3f(0.8f, 0.5f, 0.5f), my_create_sfvector3f(-20, -150, 200));
+  lights[0] = my_create_light(sfWhite,
+			      my_create_sfvector3f(0.8f, 0.8f, 0.5f),
+			      my_create_sfvector3f(-200, 0, 100));
+  lights[1] = my_create_light(sfBlue,
+			      my_create_sfvector3f(0.8f, 0.5f, 0.5f),
+			      my_create_sfvector3f(-20, -150, 200));
   lights[1].brightness = 0;
   return (lights);
 }
