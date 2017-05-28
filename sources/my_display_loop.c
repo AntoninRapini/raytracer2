@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Thu May 25 22:05:12 2017 Raphaël Goulmot
+** Last update Sun May 28 03:53:56 2017 Raphaël Goulmot
 */
 
 #include <stdlib.h>
@@ -52,21 +52,16 @@ void my_draw_screen(sfRenderWindow *window, t_screenelem *screen
 void		my_display_loop
 (sfRenderWindow *window, t_screenelem *screen, t_scene *scene)
 {
-  bool		lock;
-
-  lock = false;
   scene->window = window;
   scene->screen = screen;
   my_draw_screen(scene->window, scene->screen, scene);
   launch_thread(scene);
   while (scene->running && sfRenderWindow_isOpen(window))
     {
-      if (scene->refresh && !lock)
+      if (scene->refresh)
 	{
-	  lock = true;
 	  my_draw_screen(scene->window, scene->screen, scene);
 	  scene->refresh = 0;
-	  lock = false;
 	}
     }
   if (sfRenderWindow_isOpen(window))

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Thu May 25 22:45:12 2017 Antonin Rapini
+** Last update Sun May 28 03:19:53 2017 Raphaël Goulmot
 */
 
 #ifndef MY_OBJECT_H_
@@ -19,6 +19,7 @@ typedef struct	s_object
   sfVector3f	position;
   sfVector3f	rotation;
   sfColor	color;
+  sfColor	old_color;
   int		info;
   float		brillance;
   float		transparency;
