@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 05:14:56 2017 Antonin Rapini
+** Last update Sun May 28 19:16:56 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
@@ -78,6 +78,7 @@ sfColor my_get_reflection(t_intersect *, sfVector3f, t_scene *);
 /* my_phong_utils.c */
 float my_get_diffuse_coeff(sfVector3f, sfVector3f);
 sfVector3f my_get_reflection_vector(sfVector3f, t_intersect *);
+sfVector3f my_get_refraction_vector(sfVector3f, t_intersect *);
 int my_is_shadowed(sfVector3f, t_scene *, t_intersect *, float);
 float my_get_distance(sfVector3f, sfVector3f);
 
