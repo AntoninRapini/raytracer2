@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Sun May 28 19:06:18 2017 Raphaël Goulmot
+** Last update Sun May 28 20:23:28 2017 Raphaël Goulmot
 */
 
 #include <stdlib.h>
@@ -43,6 +43,8 @@ void my_draw_screen(sfRenderWindow *window, t_screenelem *screen
 {
   sfRenderWindow_clear(window, sfBlack);
   my_draw_scene(screen->frb, scene);
+  if (screen->frb->width > 200 && screen->frb->height > 200)
+    display_minimap(scene);
   sfTexture_updateFromPixels(screen->texture, screen->frb->pixels,
 			     screen->frb->width, screen->frb->height, 0, 0);
   sfRenderWindow_drawSprite(window, screen->sprite, NULL);

@@ -5,13 +5,28 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun May 28 00:41:09 2017 Antonin Rapini
+## Last update Sun May 28 18:25:41 2017 romain pillot
 ##
-
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
 
-SRC	=	src/my_put_pixel.c		\
+SRC	=	config/boolean.c		\
+		config/integer.c		\
+		config/string.c			\
+		config/print.c			\
+		config/read.c			\
+		config/config.c			\
+		config/key.c			\
+		config/array.c			\
+		config/free.c			\
+		config/str/str_countchar.c	\
+		config/str/str_split.c		\
+		config/str/str_reduce.c		\
+		config/str/str_length.c		\
+		config/str/str_duplicate.c	\
+		config/str/str_equals.c		\
+		config/nbr/nbr_parsestring.c	\
+		src/my_put_pixel.c		\
 		src/calc_dir_vector.c		\
 		src/translate.c			\
 		src/rotate.c			\
@@ -35,6 +50,7 @@ SRC	=	src/my_put_pixel.c		\
 		sources/my_color_utils.c	\
 		sources/my_vector3_utils.c	\
 		sources/my_get_normal.c		\
+		sources/my_minimap.c		\
 		sources/my_background_worker.c	\
 		sources/my_commands.c		\
 		sources/my_create_window.c	\
@@ -43,7 +59,7 @@ SRC	=	src/my_put_pixel.c		\
 		sources/my_framebuffer_utils.c	\
 		sources/my_process_light.c	\
 		sources/my_get_dist.c		\
-		sources/my_get_transformations.c	\
+		sources/my_get_transformations.c\
 		sources/my_getcolor.c		\
 		sources/my_scene_utils.c	\
 		sources/my_objects_creation.c	\

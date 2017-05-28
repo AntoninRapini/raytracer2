@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 19:33:51 2017 Antonin Rapini
+** Last update Sun May 28 20:55:32 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
@@ -98,5 +98,8 @@ sfColor my_mul_colors(sfColor, sfColor);
 sfColor my_mul_color(sfColor, float);
 sfColor my_add_colors(sfColor, sfColor);
 sfColor create_color(int, int, int);
+
+/* my_minimap.c */
+void display_minimap(t_scene *);
 
 #endif /* !SOURCES_H_ */

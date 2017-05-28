@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Mar 18 17:53:32 2017 Antonin Rapini
-** Last update Sun May 28 16:07:08 2017 Antonin Rapini
+** Last update Sun May 28 19:35:33 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -19,15 +19,19 @@ sfColor		my_addlight(t_rayhitinfos *infos, t_light *light, t_object *obj)
   int		r;
   int		g;
   int		b;
-  /*float		attenuation;
 
-    attenuation = 1 / 1 + (pow(infos->distance, 2) * 0.0000001);*/
-  r = ((obj->color.r + light->color.r) * (1 - obj->reflection)) + (infos->reflection.r * obj->reflection);
-  g = ((obj->color.g + light->color.g) * (1 - obj->reflection)) + (infos->reflection.g * obj->reflection);
-  b = ((obj->color.b + light->color.b) * (1 - obj->reflection)) + (infos->reflection.b * obj->reflection);
-  r *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
-  g *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
-  b *= (light->brightness * (light->diffuse * infos->diffuse + light->specular * infos->specular));
+  r = (obj->color.r + light->color.r) * (1 - obj->reflection);
+  g = (obj->color.g + light->color.g) * (1 - obj->reflection);
+  b = (obj->color.b + light->color.b) * (1 - obj->reflection);
+  r += (infos->reflection.r * obj->reflection);
+  g += (infos->reflection.g * obj->reflection);
+  b += (infos->reflection.b * obj->reflection);
+  r *= (light->brightness * (light->diffuse * infos->diffuse
+			     + light->specular * infos->specular));
+  g *= (light->brightness * (light->diffuse * infos->diffuse
+			     + light->specular * infos->specular));
+  b *= (light->brightness * (light->diffuse * infos->diffuse
+			     + light->specular * infos->specular));
   new.a = 255;
   new.r = r > 255 ? 255 : r < 0 ? 0 : r;
   new.g = g > 255 ? 255 : g < 0 ? 0 : g;
@@ -50,8 +54,9 @@ sfColor		my_process_light(t_scene *scene, t_intersect *intsct)
       my_fill_rayhitinfos(scene, i, intsct, &rayhitinfos);
       if (!rayhitinfos.shadowed)
 	{
-	  newcolor = my_add_colors(newcolor,
-				   my_addlight(&rayhitinfos, scene->lights + i, &(intsct->obj)));
+	  newcolor = my_add_colors
+	    (newcolor, my_addlight(&rayhitinfos,
+				   scene->lights + i, &(intsct->obj)));
 	}
       i++;
     }
