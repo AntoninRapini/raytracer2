@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Sun May 28 21:59:39 2017 Antonin Rapini
+** Last update Sun May 28 23:10:11 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -16,7 +16,6 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 int my_fill_objectinfos(int *infos, int i, t_object *objs)
 {

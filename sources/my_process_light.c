@@ -5,13 +5,12 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Mar 18 17:53:32 2017 Antonin Rapini
-** Last update Sun May 28 19:35:33 2017 Antonin Rapini
+** Last update Sun May 28 23:07:54 2017 Antonin Rapini
 */
 
 #include "sources.h"
 #include "utils.h"
 #include <math.h>
-#include <stdio.h>
 
 sfColor		my_addlight(t_rayhitinfos *infos, t_light *light, t_object *obj)
 {
