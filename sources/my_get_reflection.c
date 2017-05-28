@@ -5,13 +5,14 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat May 27 23:39:34 2017 Antonin Rapini
-** Last update Sun May 28 21:58:18 2017 Antonin Rapini
+** Last update Sun May 28 22:44:41 2017 Antonin Rapini
 */
 
 #include "sources.h"
 
 sfColor my_fill_intersect
-(t_intersect *intsct, sfVector3f reflection_v, t_intersect *new_intsct)
+(t_scene *scene, t_intersect *intsct,
+ sfVector3f reflection_v, t_intersect *new_intsct)
 {
   if (new_intsct->dist != -1)
     {
@@ -50,5 +51,5 @@ sfColor		my_get_reflection
 	}
       i++;
     }
-  return (my_fill_intersect(intsct, reflection_v, &intsct));
+  return (my_fill_intersect(scene, intsct, reflection_v, &new_intsct));
 }
