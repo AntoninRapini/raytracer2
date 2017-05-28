@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:11:19 2017 Antonin Rapini
-** Last update Sun May 28 16:09:15 2017 Antonin Rapini
+** Last update Sun May 28 18:54:34 2017 Raphaël Goulmot
 */
 
 #include "utils.h"
@@ -53,7 +53,7 @@ t_scene		*my_init_scene()
   scene->refresh = true;
   scene->running = true;
   scene->key_pressed = -1;
-  scene->i_object = 0;
+  scene->i_object = -1;
   return (scene);
 }
 

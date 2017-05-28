@@ -5,13 +5,14 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 19:16:56 2017 Antonin Rapini
+** Last update Sun May 28 19:33:51 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
 # define SOURCES_H_
 
 #include "my_raytracer.h"
+#include <pthread.h>
 
 #define READ_SIZE 1024
 
@@ -83,7 +84,7 @@ int my_is_shadowed(sfVector3f, t_scene *, t_intersect *, float);
 float my_get_distance(sfVector3f, sfVector3f);
 
 /* my_background_worker.c */
-void launch_thread(t_scene *);
+void launch_thread(t_scene *, pthread_t *);
 
 /* my_commands.c */
 void commands(t_scene *, int);

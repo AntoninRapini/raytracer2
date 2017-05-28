@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Fri May 26 16:55:18 2017 Raphaël Goulmot
+** Last update Sun May 28 04:00:38 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -19,12 +19,59 @@ static void	move_view(t_scene *scene, int key)
 
   axe = 0;
   speed = key == sfKeyUp || key== sfKeyLeft ? 5 : 0;
-  speed = key == sfKeyDown || key == sfKeyRight ? -5 : 0;
+  speed = key == sfKeyDown || key == sfKeyRight ? -5 : speed;
   if (speed)
     axe = key == sfKeyUp || key == sfKeyDown
       ? &scene->eye_pos.x : &scene->eye_pos.y;
   if (axe)
-    *axe += speed;
+    {
+      *axe += speed;
+      scene->refresh = true;
+    }
+}
+
+static void	move_object(t_scene *scene, t_object *obj, int key)
+{
+  float		*axe;
+  int		speed;
+
+  axe = 0;
+  speed = key == sfKeyZ || key == sfKeyQ ? 5 : 0;
+  speed = key == sfKeyS || key == sfKeyD ? -5 : speed;
+  speed = key == sfKeySpace ? 5 : key == sfKeyC ? -5 : speed;
+  if (speed)
+    axe = key == sfKeyZ || key == sfKeyS
+      ? &obj->position.x : key == sfKeyQ || key == sfKeyD
+      ? &obj->position.y : &obj->position.z;
+  if (axe)
+    {
+      *axe += speed;
+      scene->refresh = true;
+    }
+}
+
+static void	select_object(t_scene *scene, int key)
+{
+  t_object	*obj;
+  t_object	*old;
+
+  old = 0;
+  obj = 0;
+  if (scene->i_object > -1)
+    old = &scene->objects[scene->i_object];
+  scene->i_object += sfKeyPageUp == key ? 1 : -1;
+  if (scene->i_object < -1)
+    scene->i_object = -1;
+  else if (scene->i_object > -1
+	   && (obj = &scene->objects[scene->i_object])->type)
+    {
+      obj->old_color = obj->color;
+      obj->color = sfWhite;
+    }
+  else if (scene->i_object != -1)
+    scene->i_object += sfKeyPageUp == key ? -1 : 1;
+  if (old && (scene->i_object == -1 || (obj && obj->type)))
+    old->color = old->old_color;
 }
 
 void		commands(t_scene *scene, int key)
@@ -38,36 +85,22 @@ void		commands(t_scene *scene, int key)
   if (key == sfKeyUp || key == sfKeyDown
       || key == sfKeyLeft || key == sfKeyRight)
     move_view(scene, key);
-  else if (scene->i_object && (obj = &scene->objects[scene->i_object])->type)
-    {
-      if (key == sfKeyZ || key == sfKeyS)
-	obj->position.x += key == sfKeyZ ? 5 : -5;
-      else if (key == sfKeyQ || key == sfKeyD)
-	obj->position.y += key == sfKeyQ ? 5 : -5;
-    }
-  scene->refresh = true;
+  else if (scene->i_object > -1
+	   && (obj = &scene->objects[scene->i_object])->type)
+    move_object(scene, obj, key);
 }
 
+//Wait pour éviter les genre de freeze
 void		commands_off(t_scene *scene, int key)
 {
-  t_object	*obj;
+  int		wait;
 
+  wait = 20000000;
   if (scene->key_pressed == key)
     {
       if (key == sfKeyPageUp || key == sfKeyPageDown)
-	{
-	  if (scene->i_object > -1
-	      && (obj = &scene->objects[scene->i_object])->type)
-	    obj->brillance -= 0.5;
-	  scene->i_object += sfKeyPageUp == key ? 1 : -1;
-	  if (scene->i_object < -1)
-	    scene->i_object = -1;
-	  else if (scene->i_object > -1
-		   && (obj = &scene->objects[scene->i_object])->type)
-	    obj->brillance += 0.5;
-	  else if (scene->i_object > -1 && !obj->type)
-	    scene->i_object += sfKeyPageUp == key ? -1 : 1;
-	}
+	select_object(scene, key);
+      while (wait--);
       scene->key_pressed = -1;
       scene->refresh = true;
     }

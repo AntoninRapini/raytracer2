@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:27:50 2017 Antonin Rapini
-** Last update Sun May 28 03:10:55 2017 Antonin Rapini
+** Last update Sun May 28 19:36:17 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -19,21 +19,19 @@ void	my_get_intersect
   int	i;
   float	currdist;
 
-  currdist = -1;
+  currdist = intsct->dist = -1;
   intsct->dir = dir;
   intsct->origin = eye;
-  intsct->dist = -1;
   i = 0;
-  while (objs[i].type)
+  while (objs[i++].type)
     {
-      currdist = my_get_dist(objs + i, eye, dir);
+      currdist = my_get_dist(objs + i - 1, eye, dir);
       if (currdist > 0 && (currdist < intsct->dist || intsct->dist < 0))
 	{
 	  intsct->dist = currdist;
-	  intsct->obj = objs[i];
-	  intsct->obji = i;
+	  intsct->obj = objs[i - 1];
+	  intsct->obji = i - 1;
 	}
-      i++;
     }
   if (intsct->dist != -1)
     {
