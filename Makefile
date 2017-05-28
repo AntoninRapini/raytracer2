@@ -5,9 +5,8 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun May 28 18:22:32 2017 romain pillot
+## Last update Sun May 28 18:25:41 2017 romain pillot
 ##
-
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
 
@@ -51,6 +50,7 @@ SRC	=	config/boolean.c		\
 		sources/my_color_utils.c	\
 		sources/my_vector3_utils.c	\
 		sources/my_get_normal.c		\
+		sources/my_minimap.c		\
 		sources/my_background_worker.c	\
 		sources/my_commands.c		\
 		sources/my_create_window.c	\
@@ -59,7 +59,7 @@ SRC	=	config/boolean.c		\
 		sources/my_framebuffer_utils.c	\
 		sources/my_process_light.c	\
 		sources/my_get_dist.c		\
-		sources/my_get_transformations.c	\
+		sources/my_get_transformations.c\
 		sources/my_getcolor.c		\
 		sources/my_scene_utils.c	\
 		sources/my_objects_creation.c	\
