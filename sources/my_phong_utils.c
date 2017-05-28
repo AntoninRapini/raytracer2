@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat May 27 16:53:36 2017 Antonin Rapini
-** Last update Sun May 28 19:32:08 2017 Antonin Rapini
+** Last update Sun May 28 21:00:29 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -24,7 +24,8 @@ float my_get_distance(sfVector3f a, sfVector3f b)
   return (sqrt(powf(b.x - a.x, 2) + powf(b.y - a.y, 2) + powf(b.z - a.z, 2)));
 }
 
-sfVector3f	my_get_refraction_vector(sfVector3f light_dir, t_intersect *intsct)
+sfVector3f	my_get_refraction_vector
+(sfVector3f light_dir, t_intersect *intsct)
 {
   sfVector3f	refraction_v;
   sfVector3f	dir_n;
@@ -36,12 +37,15 @@ sfVector3f	my_get_refraction_vector(sfVector3f light_dir, t_intersect *intsct)
   normal_n = norm_v3(intsct->normal);
   n = intsct->obj.refraction_i / 1;
   refraction_v = my_mul_v3(dir_n, n);
-  b = n * my_dot_product(dir_n, normal_n) - sqrt((1 + pow(n, 2) * (pow(my_dot_product(dir_n, normal_n), 2) - 1)));
+  b = n * my_dot_product(dir_n, normal_n)
+    - sqrt((1 + pow(n, 2) * (pow(my_dot_product
+				 (dir_n, normal_n), 2) - 1)));
   refraction_v = my_add_v3(refraction_v, my_mul_v3(normal_n, b), -1);
   return (refraction_v);
 }
 
-sfVector3f	my_get_reflection_vector(sfVector3f light_dir, t_intersect *intsct)
+sfVector3f	my_get_reflection_vector
+(sfVector3f light_dir, t_intersect *intsct)
 {
   sfVector3f	reflection_v;
   sfVector3f	dir_n;
@@ -68,7 +72,7 @@ int	my_is_shadowed
       if (j != intsct->obji)
 	{
 	  currdist = my_get_dist(scene->objects + j, intsct->pos, light_dir);
-	  if (currdist >= 0 && currdist <= 1 && scene->objects[j].transparency == 0)
+	  if (currdist >= 0 && currdist <= 1)
 	    return (1);
 	}
       j++;

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Mar  8 17:28:16 2017 Antonin Rapini
-** Last update Sun May 28 19:23:41 2017 Antonin Rapini
+** Last update Sun May 28 21:59:39 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -48,7 +48,8 @@ int		my_parse_objectline
   i = 0;
   while (buffer[i])
     {
-      while (buffer[i] && !(buffer[i] >= '0' && buffer[i] <= '9') && buffer[i] != '-')
+      while (buffer[i] && !(buffer[i] >= '0'
+			    && buffer[i] <= '9') && buffer[i] != '-')
 	i++;
       if (j >= 16)
 	return (1);

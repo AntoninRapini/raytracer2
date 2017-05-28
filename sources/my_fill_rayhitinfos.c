@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun May 28 00:24:08 2017 Antonin Rapini
-** Last update Sun May 28 19:27:58 2017 Antonin Rapini
+** Last update Sun May 28 21:01:13 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -37,5 +37,6 @@ void my_fill_rayhitinfos
     infos->refraction = my_get_reflection(intsct, infos->refraction_v, scene);
   if (!infos->shadowed && !intsct->reflected)
     if (intsct->obj.reflection != 0)
-      infos->reflection = my_get_reflection(intsct, infos->reflection_v, scene);
+      infos->reflection = my_get_reflection
+	(intsct, infos->reflection_v, scene);
 }

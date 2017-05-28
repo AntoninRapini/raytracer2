@@ -5,23 +5,32 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat May 27 23:39:34 2017 Antonin Rapini
-** Last update Sun May 28 05:27:01 2017 Antonin Rapini
+** Last update Sun May 28 21:58:18 2017 Antonin Rapini
 */
 
 #include "sources.h"
-#include <stdio.h>
 
-sfColor		my_get_reflection(t_intersect *intsct, sfVector3f reflection_v, t_scene *scene)
+sfColor my_fill_intersect
+(t_intersect *intsct, sfVector3f reflection_v, t_intersect *new_intsct)
+{
+  if (new_intsct->dist != -1)
+    {
+      new_intsct->pos.x = intsct->pos.x + reflection_v.x * new_intsct->dist;
+      new_intsct->pos.y = intsct->pos.y + reflection_v.y * new_intsct->dist;
+      new_intsct->pos.z = intsct->pos.z + reflection_v.z * new_intsct->dist;
+      new_intsct->normal = my_get_normal(&(new_intsct->obj), new_intsct->pos);
+      return (my_process_light(scene, new_intsct));
+    }
+  return (my_get_background_color());
+}
+
+sfColor		my_get_reflection
+(t_intersect *intsct, sfVector3f reflection_v, t_scene *scene)
 {
   int		i;
-  sfColor       background;
   t_intersect	new_intsct;
   float		dist;
 
-  background.r = 120;
-  background.g = 140;
-  background.b = 170;
-  background.a = 255;
   new_intsct.dir = reflection_v;
   new_intsct.origin = intsct->pos;
   new_intsct.dist = -1;
@@ -41,13 +50,5 @@ sfColor		my_get_reflection(t_intersect *intsct, sfVector3f reflection_v, t_scene
 	}
       i++;
     }
-  if (new_intsct.dist != -1)
-    {
-      new_intsct.pos.x = intsct->pos.x + reflection_v.x * new_intsct.dist;
-      new_intsct.pos.y = intsct->pos.y + reflection_v.y * new_intsct.dist;
-      new_intsct.pos.z = intsct->pos.z + reflection_v.z * new_intsct.dist;
-      new_intsct.normal = my_get_normal(&(new_intsct.obj), new_intsct.pos);
-      return (my_process_light(scene, &new_intsct));
-    }
-  return (background);
+  return (my_fill_intersect(intsct, reflection_v, &intsct));
 }
