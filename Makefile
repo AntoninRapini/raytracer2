@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun May 28 21:51:09 2017 Antonin Rapini
+## Last update Sun May 28 22:43:49 2017 Antonin Rapini
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -30,7 +30,6 @@ SRC	=	config/boolean.c		\
 		src/calc_dir_vector.c		\
 		src/translate.c			\
 		src/rotate.c			\
-		src/light.c			\
 		src/utils.c			\
 		utils/my_miniprintf.c		\
 		utils/my_display_utils.c	\
