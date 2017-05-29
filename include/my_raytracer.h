@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 22 21:38:56 2017 Antonin Rapini
-** Last update Thu May 25 21:58:36 2017 Antonin Rapini
+** Last update Mon May 29 23:42:54 2017 Antonin Rapini
 */
 
 #ifndef MY_RAYTRACER_H_
@@ -47,8 +47,8 @@ typedef struct		s_scene
   sfVector3f		eye_pos;
   sfVector3f		eye_rot;
   sfVector2i		screen_size;
-  t_object		*objects;
-  t_light		*lights;
+  t_object		**objects;
+  t_light		**lights;
 }			t_scene;
 
 typedef struct		s_raytracer

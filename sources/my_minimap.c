@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Sun May 28 19:18:57 2017 Raphaël Goulmot
-** Last update Sun May 28 20:22:36 2017 Raphaël Goulmot
+** Last update Mon May 29 23:45:17 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -38,18 +38,18 @@ void		display_minimap(t_scene *scene)
   pos.y = 0;
   draw_square(scene, pos, 90, sfBlack);
   o = -1;
-  while (scene->objects[++o].type)
+  while (scene->objects[++o])
     {
-      if (scene->objects[o].type > 1
-	  && scene->objects[o].position.x >= scene->eye_pos.x - 225
-	  && scene->objects[o].position.x <= scene->eye_pos.x + 225
-	  && scene->objects[o].position.y >= scene->eye_pos.y - 225
-	  && scene->objects[o].position.y <= scene->eye_pos.y + 225)
+      if (scene->objects[o]->type != 1
+	  && scene->objects[o]->position.x >= scene->eye_pos.x - 225
+	  && scene->objects[o]->position.x <= scene->eye_pos.x + 225
+	  && scene->objects[o]->position.y >= scene->eye_pos.y - 225
+	  && scene->objects[o]->position.y <= scene->eye_pos.y + 225)
 	{
 	  pos.y = 90 -
-	    (scene->objects[o].position.x - (scene->eye_pos.x - 200)) / 5 - 10;
+	    (scene->objects[o]->position.x - (scene->eye_pos.x - 200)) / 5 - 10;
 	  pos.x = scene->screen->frb->width -
-	    (scene->objects[o].position.y - (scene->eye_pos.y - 200)) / 5 - 10;
+	    (scene->objects[o]->position.y - (scene->eye_pos.y - 200)) / 5 - 10;
 	  draw_square(scene, pos, 10, sfGreen);
 	}
     }

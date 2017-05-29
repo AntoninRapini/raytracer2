@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Sun May 28 04:00:38 2017 Raphaël Goulmot
+** Last update Mon May 29 23:47:21 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -58,12 +58,12 @@ static void	select_object(t_scene *scene, int key)
   old = 0;
   obj = 0;
   if (scene->i_object > -1)
-    old = &scene->objects[scene->i_object];
+    old = scene->objects[scene->i_object];
   scene->i_object += sfKeyPageUp == key ? 1 : -1;
   if (scene->i_object < -1)
     scene->i_object = -1;
   else if (scene->i_object > -1
-	   && (obj = &scene->objects[scene->i_object])->type)
+	   && (obj = scene->objects[scene->i_object])->type)
     {
       obj->old_color = obj->color;
       obj->color = sfWhite;
@@ -86,7 +86,7 @@ void		commands(t_scene *scene, int key)
       || key == sfKeyLeft || key == sfKeyRight)
     move_view(scene, key);
   else if (scene->i_object > -1
-	   && (obj = &scene->objects[scene->i_object])->type)
+	   && (obj = scene->objects[scene->i_object])->type)
     move_object(scene, obj, key);
 }
 

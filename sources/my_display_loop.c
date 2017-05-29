@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Sun May 28 22:45:13 2017 Antonin Rapini
+** Last update Mon May 29 23:48:57 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -31,7 +31,7 @@ void            my_draw_scene(t_my_framebuffer *frb, t_scene *scene)
           curr_pos.x = i;
           curr_pos.y = j;
           curr_dir = calc_dir_vector(300, scene->screen_size, curr_pos);
-          my_put_pixel(frb, i, j, my_getcolor(scene, curr_dir, 0));
+          my_put_pixel(frb, i, j, my_getcolor(scene, curr_dir));
           j++;
         }
       i++;
