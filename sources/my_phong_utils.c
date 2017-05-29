@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat May 27 16:53:36 2017 Antonin Rapini
-** Last update Sun May 28 21:00:29 2017 Antonin Rapini
+** Last update Sun May 28 23:00:25 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -58,12 +58,14 @@ sfVector3f	my_get_reflection_vector
   return (reflection_v);
 }
 
-int	my_is_shadowed
+int	my_get_shadow
 (sfVector3f light_dir, t_scene *scene, t_intersect *intsct, float diffuse)
 {
   int	j;
   float	currdist;
+  int	shadow;
 
+  shadow = 0;
   j = 0;
   if (acos(diffuse) * (180 / M_PI) >= 90)
     return (1);
@@ -73,9 +75,13 @@ int	my_is_shadowed
 	{
 	  currdist = my_get_dist(scene->objects + j, intsct->pos, light_dir);
 	  if (currdist >= 0 && currdist <= 1)
-	    return (1);
+	    {
+	      shadow += 100 - scene->objects[j].transparency * 100;
+	      if (shadow >= 100)
+		return (100);
+	    }
 	}
       j++;
     }
-  return (0);
+  return (shadow);
 }

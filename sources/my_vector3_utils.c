@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar 14 22:16:53 2017 Antonin Rapini
-** Last update Thu May 25 19:36:30 2017 Antonin Rapini
+** Last update Sun May 28 22:54:18 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -24,6 +24,14 @@ sfVector3f	norm_v3(sfVector3f a)
   a.x = a.x / norm;
   a.y = a.y / norm;
   a.z = a.z / norm;
+  return (a);
+}
+
+sfVector3f my_add_to_v3(sfVector3f a, float value)
+{
+  a.x += value;
+  a.y += value;
+  a.z += value;
   return (a);
 }
 

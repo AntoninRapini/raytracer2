@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Dec  4 18:33:16 2016 Antonin Rapini
-** Last update Sun May 28 21:50:01 2017 Antonin Rapini
+** Last update Sun May 28 22:54:09 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
@@ -27,7 +27,7 @@ float my_getsolution(float, float, float);
 float get_light_coef(sfVector3f, sfVector3f);
 t_object my_create_sphere(int, sfColor);
 t_object my_create_plane(sfColor);
-t_object *my_create_objects();
+t_object *my_create_objects(char *);
 char *get_next_line(int);
 sfColor my_process_light(t_scene *, t_intersect *);
 void my_get_transformations(t_scene *scene);
@@ -40,6 +40,7 @@ void my_get_intersect(t_object *, sfVector3f, sfVector3f, t_intersect *);
 sfColor my_getcolor(t_scene *, sfVector3f, int);
 
 /* my_vector3_utils.c */
+sfVector3f my_add_to_v3(sfVector3f, float);
 float my_dot_product(sfVector3f, sfVector3f);
 sfVector3f norm_v3(sfVector3f);
 sfVector3f my_add_v3(sfVector3f, sfVector3f, int);
@@ -80,7 +81,7 @@ sfColor my_get_reflection(t_intersect *, sfVector3f, t_scene *);
 float my_get_diffuse_coeff(sfVector3f, sfVector3f);
 sfVector3f my_get_reflection_vector(sfVector3f, t_intersect *);
 sfVector3f my_get_refraction_vector(sfVector3f, t_intersect *);
-int my_is_shadowed(sfVector3f, t_scene *, t_intersect *, float);
+int my_get_shadow(sfVector3f, t_scene *, t_intersect *, float);
 float my_get_distance(sfVector3f, sfVector3f);
 
 /* my_background_worker.c */

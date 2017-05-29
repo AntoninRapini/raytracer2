@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:27:50 2017 Antonin Rapini
-** Last update Sun May 28 19:36:17 2017 Antonin Rapini
+** Last update Sun May 28 23:20:50 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -45,15 +45,10 @@ void	my_get_intersect
 sfColor		my_getcolor(t_scene *scene, sfVector3f dir, int reflected)
 {
   t_intersect	intersect;
-  sfColor	background;
 
   intersect.reflected = reflected;
-  background.r = 120;
-  background.g = 140;
-  background.b = 170;
-  background.a = 255;
   my_get_intersect(scene->objects, scene->eye_pos, dir, &intersect);
   if (intersect.dist != -1)
     return (my_process_light(scene, &intersect));
-  return (background);
+  return (my_get_background_color());
 }

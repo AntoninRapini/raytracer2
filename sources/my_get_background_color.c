@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun May 28 21:46:55 2017 Antonin Rapini
-** Last update Sun May 28 21:47:42 2017 Antonin Rapini
+** Last update Sun May 28 23:21:57 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -14,9 +14,9 @@ sfColor		my_get_background_color()
 {
   sfColor       background;
 
-  background.r = 120;
-  background.g = 140;
-  background.b = 170;
+  background.r = 20;
+  background.g = 40;
+  background.b = 200;
   background.a = 255;
   return (background);
 }

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue Mar  7 19:24:35 2017 Antonin Rapini
-** Last update Sun May 28 19:20:26 2017 Antonin Rapini
+** Last update Sun May 28 22:26:17 2017 Antonin Rapini
 */
 
 #ifndef MY_LIGHT_H_
@@ -31,7 +31,7 @@ typedef struct	s_rayhitinfos
   sfVector3f	refraction_v;
   float		diffuse;
   float		specular;
-  int		shadowed;
+  int		shadow;
   sfColor	final;
   float		distance;
 }		t_rayhitinfos;

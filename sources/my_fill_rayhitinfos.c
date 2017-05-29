@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun May 28 00:24:08 2017 Antonin Rapini
-** Last update Sun May 28 21:01:13 2017 Antonin Rapini
+** Last update Sun May 28 23:31:20 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -30,12 +30,12 @@ void my_fill_rayhitinfos
   infos->specular = pow(my_dot_product
 			(norm_v3(intsct->dir), norm_v3(infos->reflection_v)),
 			intsct->obj.brillance);
-  infos->shadowed = my_is_shadowed(infos->light_dir,
-				   scene, intsct, infos->diffuse);
+  infos->shadow= my_get_shadow(infos->light_dir,
+			       scene, intsct, infos->diffuse);
   infos->distance = my_get_distance(scene->lights[i].position, intsct->pos);
-  if (!infos->shadowed && !intsct->reflected)
-    infos->refraction = my_get_reflection(intsct, infos->refraction_v, scene);
-  if (!infos->shadowed && !intsct->reflected)
+  if (!intsct->reflected)
+    infos->refraction = my_get_reflection(intsct, intsct->dir, scene);
+  if (!intsct->reflected)
     if (intsct->obj.reflection != 0)
       infos->reflection = my_get_reflection
 	(intsct, infos->reflection_v, scene);
