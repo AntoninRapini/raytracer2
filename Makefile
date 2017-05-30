@@ -5,10 +5,16 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Sun May 28 23:13:39 2017 Antonin Rapini
+## Last update Tue May 30 00:09:17 2017 Antonin Rapini
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
+
+SRCDIR		= sources
+TRANSFORMS	= $(SRCDIR)/transformations
+EFFECTS		= $(SRCDIR)/effects
+OBJECTS		= $(SRCDIR)/objects
+INIT		= $(SRCDIR)/init
 
 SRC	=	config/boolean.c		\
 		config/integer.c		\
@@ -26,11 +32,6 @@ SRC	=	config/boolean.c		\
 		config/str/str_duplicate.c	\
 		config/str/str_equals.c		\
 		config/nbr/nbr_parsestring.c	\
-		src/my_put_pixel.c		\
-		src/calc_dir_vector.c		\
-		src/translate.c			\
-		src/rotate.c			\
-		src/utils.c			\
 		utils/my_miniprintf.c		\
 		utils/my_display_utils.c	\
 		utils/my_abs.c			\
@@ -43,31 +44,39 @@ SRC	=	config/boolean.c		\
 		utils/get_next_line.c		\
 		utils/my_puterror.c		\
 		utils/my_memset.c		\
-		sources/my_get_background_color.c	\
-		sources/my_fill_rayhitinfos.c	\
-		sources/my_get_reflection.c	\
-		sources/my_phong_utils.c	\
-		sources/my_color_utils.c	\
-		sources/my_vector3_utils.c	\
-		sources/my_get_normal.c		\
-		sources/my_minimap.c		\
-		sources/my_background_worker.c	\
-		sources/my_commands.c		\
-		sources/my_create_window.c	\
-		sources/my_screenelem_utils.c	\
-		sources/my_raytracer_utils.c	\
-		sources/my_framebuffer_utils.c	\
-		sources/my_process_light.c	\
-		sources/my_get_dist.c		\
-		sources/my_getcolor.c		\
-		sources/my_scene_utils.c	\
-		sources/my_objects_creation.c	\
-		sources/my_create_objects.c	\
-		sources/my_display_loop.c	\
-		sources/objects/sphere.c	\
-		sources/objects/plane.c		\
-		sources/objects/cylinder.c	\
-		sources/objects/cone.c		\
+		utils/my_color_utils.c		\
+		utils/my_vector3_utils.c	\
+		$(SRCDIR)/intersect.c		\
+		$(SRCDIR)/my_put_pixel.c	\
+		$(SRCDIR)/calc_dir_vector.c	\
+		$(SRCDIR)/my_getsolution.c	\
+		$(SRCDIR)/my_get_background.c	\
+		$(SRCDIR)/fill_lightray.c	\
+		$(SRCDIR)/my_get_normal.c	\
+		$(SRCDIR)/my_minimap.c		\
+		$(SRCDIR)/my_background_worker.c	\
+		$(SRCDIR)/my_commands.c		\
+		$(SRCDIR)/my_create_window.c	\
+		$(SRCDIR)/my_process_light.c	\
+		$(SRCDIR)/my_get_dist.c		\
+		$(SRCDIR)/my_getcolor.c		\
+		$(SRCDIR)/my_display_loop.c	\
+		$(INIT)/my_create_lights.c	\
+		$(INIT)/my_create_objects.c	\
+		$(INIT)/my_framebuffer_utils.c	\
+		$(INIT)/my_raytracer_utils.c	\
+		$(INIT)/my_screenelem_utils.c	\
+		$(INIT)/my_scene_utils.c	\
+		$(OBJECTS)/sphere.c		\
+		$(OBJECTS)/plane.c		\
+		$(OBJECTS)/cylinder.c		\
+		$(OBJECTS)/cone.c		\
+		$(EFFECTS)/reflection.c		\
+		$(EFFECTS)/refraction.c		\
+		$(EFFECTS)/phong.c		\
+		$(EFFECTS)/perlin.c		\
+		$(TRANSFORMS)/translate.c	\
+		$(TRANSFORMS)/rotate.c		\
 		raytracer2.c
 
 OBJ	=	$(SRC:.c=.o)

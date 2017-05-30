@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 21:44:13 2017 romain pillot
-** Last update Sun May 28 21:44:14 2017 romain pillot
+** Last update Tue May 30 00:55:20 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -27,18 +27,17 @@ static t_object	*create_object(t_key *key)
 					  keyget_integer(key, "rotation.y"),
 					  keyget_integer(key, "rotation.z"));
   object->info = keyget_integer(key, "info");
-  object->color.r = keyget_integer(key, "color.r");
-  object->color.g = keyget_integer(key, "color.g");
-  object->color.b = keyget_integer(key, "color.b");
-  object->color.a = keyget_integer(key, "color.a");
+  object->color = create_color(keyget_integer(key, "color.r"),
+			       keyget_integer(key, "color.g"),
+			       keyget_integer(key, "color.b"));
   object->brillance = keyget_integer(key, "brillance");
-  object->reflection = keyget_integer(key, "reflection");
-  object->transparency = keyget_integer(key, "transparency");
-  object->refraction_i = keyget_integer(key, "refraction_i");
+  object->reflection = (float)keyget_integer(key, "reflection") / 100;
+  object->transparency = (float)keyget_integer(key, "transparency") / 100;
+  object->refraction_i = (float)keyget_integer(key, "refraction_i") / 100;
   return (object);
 }
 
-/* temporary */
+/* temporary
 static t_object	*convert(t_array *array, t_object **objs, int length)
 {
   int		i;
@@ -65,9 +64,9 @@ static t_object	*convert(t_array *array, t_object **objs, int length)
     }
   array_destroy(&array, true);
   return (new);
-}
+  }*/
 
-t_object	*my_create_objects(t_config *config)
+t_object	**my_create_objects(t_config *config)
 {
   t_key		*objects;
   t_array	*keys;
@@ -81,5 +80,5 @@ t_object	*my_create_objects(t_config *config)
   i = -1;
   while (((t_key **) keys->values)[++i])
     array_add(array, create_object((t_key *) keys->values[i]));
-  return (convert(array, (t_object **)array->values, array->length));
+  return ((t_object **)array->values);
 }

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Sun May 28 19:33:39 2017 Antonin Rapini
+** Last update Tue May 30 00:07:21 2017 Antonin Rapini
 */
 
 #ifndef MY_OBJECT_H_
@@ -21,7 +21,7 @@ typedef struct	s_object
   sfColor	color;
   sfColor	old_color;
   int		info;
-  float		brillance;
+  int		brillance;
   float		transparency;
   float		refraction_i;
   float		reflection;
@@ -29,16 +29,20 @@ typedef struct	s_object
 
 typedef struct	s_intersect
 {
-  sfVector3f	dir;
   sfVector3f   	pos;
-  sfVector3f	origin;
-  float		dist;
-  int		obji;
-  int		shadowed;
-  int		reflected;
   sfVector3f   	normal;
-  t_object	obj;
+  t_object	*obj;
+  int		obj_i;
 }		t_intersect;
+
+typedef struct	s_ray
+{
+  sfVector3f	origin;
+  sfVector3f	direction;
+  float		distance;
+  t_intersect	intersect;
+  int		reflections;
+}		t_ray;
 
 /* sphere.c */
 float intersect_sphere(t_object *, sfVector3f, sfVector3f);

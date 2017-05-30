@@ -5,28 +5,13 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 20:26:03 2017 romain pillot
-** Last update Sun May 28 20:26:17 2017 romain pillot
+** Last update Tue May 30 00:53:04 2017 Antonin Rapini
 */
 
 #include "utils.h"
 #include "sources.h"
 #include <stdlib.h>
-
-t_light         *my_create_lights()
-{
-  t_light       *lights;
-
-  if ((lights = malloc(sizeof(t_light) * 3)) == NULL)
-    return (NULL);
-  lights[0] = my_create_light(sfWhite,
-			      my_create_sfvector3f(0.8f, 0.8f, 0.5f),
-			      my_create_sfvector3f(-200, 0, 100));
-  lights[1] = my_create_light(sfBlue,
-			      my_create_sfvector3f(0.8f, 0.5f, 0.5f),
-			      my_create_sfvector3f(-20, -150, 200));
-  lights[1].brightness = 0;
-  return (lights);
-}
+#include <stdio.h>
 
 void *my_free_scene(t_scene *scene)
 {
@@ -77,8 +62,8 @@ t_scene		*my_create_scene(char *file)
   scene->screen_size.y = get_integer(config, "properties.screen.height");
   if ((scene->objects = my_create_objects(config)) == NULL)
     return (my_free_scene(scene));
-  config_destroy(config);
-  if ((scene->lights = my_create_lights()) == NULL)
+  if ((scene->lights = my_create_lights(config)) == NULL)
     return (my_free_scene(scene));
+  config_destroy(config);
   return (scene);
 }
