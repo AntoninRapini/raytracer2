@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 21:44:13 2017 romain pillot
-** Last update Tue May 30 18:55:17 2017 Antonin Rapini
+** Last update Tue May 30 20:00:57 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -46,10 +46,10 @@ t_object	**my_create_objects(t_config *config)
   t_array	*array;
   int		i;
 
-  if (!(array = array_create()))
+  if (!(array = array_create()) ||
+      !(objects = get_key(config, "objects")) ||
+      !(keys = (t_array *) objects->value))
     return (NULL);
-  objects = get_key(config, "objects");
-  keys = (t_array *)objects->value;
   i = -1;
   while (((t_key **)keys->values)[++i])
     array_add(array, create_object((t_key *)keys->values[i]));

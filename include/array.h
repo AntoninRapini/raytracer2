@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 14:02:04 2017 romain pillot
-** Last update Tue May 23 16:24:05 2017 romain pillot
+** Last update Tue May 30 13:47:24 2017 romain pillot
 */
 
 #ifndef ARRAY_H_

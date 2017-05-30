@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 14:48:44 2017 romain pillot
-** Last update Tue May 23 16:33:29 2017 romain pillot
+** Last update Tue May 30 14:38:55 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -36,7 +36,7 @@ void		array_destroy(t_array **array_addr, bool free_content)
       while (array->values[++i])
 	free(array->values[i]);
     }
-  else if (array->values)
+  if (array->values)
     free(array->values);
   free(array);
   *array_addr = 0;

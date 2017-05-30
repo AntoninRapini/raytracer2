@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Tue May 30 04:51:32 2017 Antonin Rapini
+## Last update Tue May 30 19:43:29 2017 romain pillot
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -24,8 +24,12 @@ SRC	=	config/boolean.c		\
 		config/config.c			\
 		config/key.c			\
 		config/array.c			\
+		config/array_converter.c	\
+		config/array_integer.c		\
+		config/array_string.c		\
 		config/free.c			\
 		config/str/str_countchar.c	\
+		config/str/str_contains.c	\
 		config/str/str_split.c		\
 		config/str/str_reduce.c		\
 		config/str/str_length.c		\

@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 03:15:41 2017 romain pillot
-** Last update Sun May 28 17:18:53 2017 romain pillot
+** Last update Tue May 30 14:46:56 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -27,6 +27,10 @@ static void	key_free(t_key *key)
 	key_free(keys[i]);
       FREE(keys);
     }
+  else if (key->type == STRING_ARRAY)
+    array_destroy((t_array **) &key->value, true);
+  else if (key->type == INTEGER_ARRAY)
+    FREE(((t_intarray *) key->value)->values);
   FREE(key->name);
   FREE(key->value);
   FREE(key);
