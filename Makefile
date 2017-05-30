@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Tue May 30 00:09:17 2017 Antonin Rapini
+## Last update Tue May 30 04:51:32 2017 Antonin Rapini
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -46,6 +46,8 @@ SRC	=	config/boolean.c		\
 		utils/my_memset.c		\
 		utils/my_color_utils.c		\
 		utils/my_vector3_utils.c	\
+		$(SRCDIR)/get_object_color.c	\
+		$(SRCDIR)/my_loadtexture.c	\
 		$(SRCDIR)/intersect.c		\
 		$(SRCDIR)/my_put_pixel.c	\
 		$(SRCDIR)/calc_dir_vector.c	\

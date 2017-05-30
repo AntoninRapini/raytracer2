@@ -5,13 +5,14 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun May 28 00:24:08 2017 Antonin Rapini
-** Last update Mon May 29 23:40:06 2017 Antonin Rapini
+** Last update Tue May 30 20:43:47 2017 Antonin Rapini
 */
 
 #include <math.h>
 #include "sources.h"
 
-void fill_lightray(t_scene *scene, t_light *light, t_ray *ray, t_lightray *lray)
+void fill_lightray
+(t_scene *scene, t_light *light, t_ray *ray, t_lightray *lray)
 {
   lray->light_dir = my_add_v3(light->position, ray->intersect.pos, -1);
   lray->reflection_v = my_get_reflection_vector

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 29 18:19:25 2017 Antonin Rapini
-** Last update Tue May 30 00:13:28 2017 Antonin Rapini
+** Last update Tue May 30 20:51:38 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -25,24 +25,24 @@ void	find_intersect(t_object **objs, t_ray *ray, int ignore_index)
 
   i = 0;
   currdist = -1;
-  while (objs[i])
+  while (objs[i++])
     {
-      if (i != ignore_index)
+      if (i - 1 != ignore_index)
 	{
-	  currdist = my_get_dist(objs[i], ray->origin, ray->direction);
+	  currdist = my_get_dist(objs[i - 1], ray->origin, ray->direction);
 	  if (currdist > 0 && (currdist < ray->distance || ray->distance < 0))
 	    {
 	      ray->distance = currdist;
-	      ray->intersect.obj = objs[i];
-	      ray->intersect.obj_i = i;
+	      ray->intersect.obj = objs[i - 1];
+	      ray->intersect.obj_i = i - 1;
 	    }
 	}
-      i++;
     }
   if (ray->distance == -1)
     return ;
   ray->intersect.pos.x = ray->origin.x + ray->direction.x * ray->distance;
   ray->intersect.pos.y = ray->origin.y + ray->direction.y * ray->distance;
   ray->intersect.pos.z = ray->origin.z + ray->direction.z * ray->distance;
-  ray->intersect.normal = my_get_normal(ray->intersect.obj, ray->intersect.pos);
+  ray->intersect.normal = my_get_normal
+    (ray->intersect.obj, ray->intersect.pos);
 }

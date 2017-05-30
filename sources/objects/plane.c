@@ -5,9 +5,10 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Feb  8 15:47:59 2017 Antonin Rapini
-** Last update Wed May 24 22:26:30 2017 Antonin Rapini
+** Last update Tue May 30 18:02:59 2017 Antonin Rapini
 */
 
+#include <math.h>
 #include <SFML/Graphics.h>
 #include "my_object.h"
 
@@ -27,4 +28,16 @@ sfVector3f get_normal_plane(t_object *obj, sfVector3f ip)
   ip.y = 0;
   ip.z = 100 * obj->info == 0 ? -1 : 1;
   return (ip);
+}
+
+sfVector2f	get_plane_uv(t_object *obj, t_ray *ray)
+{
+  sfVector2f	uv;
+
+  uv.x = fabs(ray->intersect.pos.x);
+  uv.y = fabs(ray->intersect.pos.y);
+  if (obj && ray)
+    {
+    }
+  return (uv);
 }
