@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 20:26:03 2017 romain pillot
-** Last update Tue May 30 18:56:54 2017 Antonin Rapini
+** Last update Tue May 30 20:22:36 2017 romain pillot
 */
 
 #include "utils.h"
@@ -13,8 +13,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void *my_free_scene(t_scene *scene)
+void *my_free_scene(t_scene *scene, t_config *config)
 {
+  config_destroy(config);
   if (scene)
     {
       if (scene->objects)
@@ -76,13 +77,13 @@ t_scene		*my_create_scene(char *file)
       !(config = config_load(file)))
     return (NULL);
   if (load_scene_infos(scene, config))
-    return (my_free_scene(scene));
+    return (my_free_scene(scene, config));
   if ((scene->objects = my_create_objects(config)) == NULL)
-    return (my_free_scene(scene));
+    return (my_free_scene(scene, config));
   if ((scene->lights = my_create_lights(config)) == NULL)
-    return (my_free_scene(scene));
+    return (my_free_scene(scene, config));
   if (my_loadtextures(scene->objects))
-    return (my_free_scene(scene));
+    return (my_free_scene(scene, config));
   config_destroy(config);
   return (scene);
 }

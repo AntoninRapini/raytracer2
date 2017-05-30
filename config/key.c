@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 04:05:26 2017 romain pillot
-** Last update Tue May 30 19:50:12 2017 romain pillot
+** Last update Tue May 30 20:26:27 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -18,13 +18,13 @@ t_key	*key_resolve(t_array *array, const char *path)
   int           i;
   t_key         *key;
 
-  key = NULL;
   keys = str_split(str_dupl(path), KEY_SEPARATOR);
   if (!(key = key_find(array, keys[0])))
     {
       fprint("key resolver: key not found: ");
       fprint(keys[0]);
       fprint("\n");
+      TAB_FREE(keys);
       return (false);
     }
   i = 0;
@@ -34,6 +34,7 @@ t_key	*key_resolve(t_array *array, const char *path)
 	fprint("key resolver: key not found: ");
 	fprint(keys[i]);
 	fprint("\n");
+	TAB_FREE(keys);
 	return (false);
       }
   TAB_FREE(keys);
