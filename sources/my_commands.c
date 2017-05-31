@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Mon May 29 23:47:21 2017 Antonin Rapini
+** Last update Wed May 31 11:20:11 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -44,10 +44,10 @@ static void	move_object(t_scene *scene, t_object *obj, int key)
       ? &obj->position.x : key == sfKeyQ || key == sfKeyD
       ? &obj->position.y : &obj->position.z;
   if (axe)
-    {
-      *axe += speed;
-      scene->refresh = true;
-    }
+    *axe += speed;
+  else
+    rotate_object(scene, obj, key);
+  scene->refresh = true;
 }
 
 static void	select_object(t_scene *scene, int key)

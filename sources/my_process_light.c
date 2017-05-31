@@ -5,21 +5,24 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat Mar 18 17:53:32 2017 Antonin Rapini
-** Last update Tue May 30 00:45:45 2017 Antonin Rapini
+** Last update Tue May 30 20:44:09 2017 Antonin Rapini
 */
 
 #include "sources.h"
 #include "utils.h"
 #include <math.h>
 
-sfColor		my_addlight(t_lightray *infos, t_light *light, t_object *obj)
+sfColor		my_addlight
+(t_lightray *infos, t_light *light, t_object *obj, t_ray *ray)
 {
   sfColor	new;
   sfVector3f	color;
+  sfColor	objcolor;
 
-  color.x = (obj->color.r + light->color.r);
-  color.y = (obj->color.g + light->color.g);
-  color.z = (obj->color.b + light->color.b);
+  objcolor = get_object_color(obj, ray);
+  color.x = (objcolor.r + light->color.r);
+  color.y = (objcolor.g + light->color.g);
+  color.z = (objcolor.b + light->color.b);
   color = my_mul_v3(color, light->brightness *
 		    (light->diffuse * infos->diffuse
 		     + light->specular * infos->specular));
@@ -47,7 +50,7 @@ sfColor		my_process_light(t_scene *scene, t_ray *ray)
   t_lightray	lightray;
 
   newcolor = sfBlack;
-  color = my_mul_color(ray->intersect.obj->color, 0.2
+  color = my_mul_color(get_object_color(ray->intersect.obj, ray), 0.2
 		       * (1 - ray->intersect.obj->transparency));
   i = 0;
   while (scene->lights[i])
@@ -55,7 +58,7 @@ sfColor		my_process_light(t_scene *scene, t_ray *ray)
       fill_lightray(scene, scene->lights[i], ray, &lightray);
       newcolor = my_add_colors
 	(newcolor, my_addlight(&lightray,
-			       scene->lights[i], ray->intersect.obj));
+			       scene->lights[i], ray->intersect.obj, ray));
       i++;
     }
   color = my_add_colors(color, newcolor);

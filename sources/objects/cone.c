@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Jan  1 16:54:57 2017 Antonin Rapini
-** Last update Wed May 24 22:34:08 2017 Antonin Rapini
+** Last update Tue May 30 17:33:51 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -30,4 +30,16 @@ sfVector3f get_normal_cone(t_object *obj, sfVector3f ip)
 {
   ip.z = -tan(obj->info * M_PI / 180) * ip.z;
   return (ip);
+}
+
+sfVector2f	get_cone_uv(t_object *obj, t_ray *ray)
+{
+  sfVector2f	uv;
+
+  uv.x = 0;
+  uv.y = 0;
+  if (obj && ray)
+    {
+    }
+  return (uv);
 }

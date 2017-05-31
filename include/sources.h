@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 29 16:55:34 2017 Antonin Rapini
-** Last update Mon May 29 23:41:42 2017 Antonin Rapini
+** Last update Wed May 31 11:20:39 2017 Raphaël Goulmot
 */
 
 #ifndef SOURCES_H_
@@ -78,6 +78,12 @@ void *my_free_scene();
 
 /*** EFFECTS ***/
 
+/* my_loadtexture.c */
+t_texture *my_readbmp(char *);
+sfColor **create_texture(unsigned char *, int, int);
+int fill_bmpheader(t_bmpheader *, int);
+int my_loadtextures(t_object **);
+
 /* perlin.c */
 float perlin_noise(float, float, float, int);
 
@@ -93,7 +99,6 @@ sfColor my_get_refraction_color(t_ray *, sfVector3f, t_scene *);
 float my_get_diffuse_coeff(sfVector3f, sfVector3f);
 int my_get_shadow(t_lightray *, t_scene *, t_intersect *);
 float euclidean_distance(sfVector3f, sfVector3f);
-
 
 /*** HELPERS ***/
 
@@ -112,6 +117,7 @@ void launch_thread(t_scene *, pthread_t *);
 /* my_commands.c */
 void commands(t_scene *, int);
 void commands_off(t_scene *, int);
+void rotate_object(t_scene *, t_object *, int);
 
 /* my_color_utils.c */
 sfColor my_mul_colors(sfColor, sfColor);
@@ -121,6 +127,9 @@ sfColor create_color(int, int, int);
 
 /* my_minimap.c */
 void display_minimap(t_scene *);
+
+/* get_object_color.c */
+sfColor get_object_color(t_object *, t_ray *);
 
 /* my_get_background.c */
 sfColor my_get_background();
