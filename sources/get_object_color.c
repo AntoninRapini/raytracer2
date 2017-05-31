@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Tue May 30 04:33:56 2017 Antonin Rapini
-** Last update Tue May 30 18:01:50 2017 Antonin Rapini
+** Last update Wed May 31 04:07:53 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -55,8 +55,8 @@ sfColor		get_object_color(t_object *obj, t_ray *ray)
 
   if (obj->materialtype == 1 && obj->type == 1)
     {
-      if ((int)fabs(ray->intersect.pos.x) % 20 > 10
-	  && (int)fabs(ray->intersect.pos.y) % 20 > 10)
+      if ((int)fabs(ray->intersect.pos.x) % 40 > 20
+	  && (int)fabs(ray->intersect.pos.y) % 40 > 20)
 	return (obj->color);
       color.r = 255 - obj->color.r;
       color.g = 255 - obj->color.g;

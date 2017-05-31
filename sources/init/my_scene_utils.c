@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 20:26:03 2017 romain pillot
-** Last update Tue May 30 20:22:36 2017 romain pillot
+** Last update Wed May 31 21:59:22 2017 Antonin Rapini
 */
 
 #include "utils.h"
@@ -33,9 +33,8 @@ t_scene		*my_init_scene()
 
   if ((scene = malloc(sizeof(t_scene))) == NULL)
     return (NULL);
-  scene->eye_pos.x = 0;
-  scene->eye_pos.y = 0;
-  scene->eye_pos.z = 0;
+  scene->eye_pos = my_create_sfvector3f(0, 0, 0);
+  scene->eye_rot = my_create_sfvector3f(0, 0, 0);
   scene->screen_size.x = 0;
   scene->screen_size.y = 0;
   scene->objects = 0;
@@ -54,6 +53,11 @@ int load_scene_infos(t_scene *scene, t_config *config)
 			 get_integer(config, "properties.eye.position.x"),
 			 get_integer(config, "properties.eye.position.y"),
 			 get_integer(config, "properties.eye.position.z"));
+  scene->eye_rot =
+    my_create_sfvector3f(
+			 get_integer(config, "properties.eye.rotation.x"),
+			 get_integer(config, "properties.eye.rotation.y"),
+			 get_integer(config, "properties.eye.rotation.z"));
   scene->screen_size.x = get_integer(config, "properties.screen.width");
   scene->screen_size.y = get_integer(config, "properties.screen.height");
   scene->backgroundtype = get_integer(config,
