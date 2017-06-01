@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 03:15:41 2017 romain pillot
-** Last update Sun May 28 17:18:53 2017 romain pillot
+** Last update Thu Jun  1 04:54:24 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -27,6 +27,10 @@ static void	key_free(t_key *key)
 	key_free(keys[i]);
       FREE(keys);
     }
+  else if (key->type == STRING_ARRAY)
+    array_destroy((t_array **) &key->value, true);
+  else if (key->type == INTEGER_ARRAY)
+    FREE(((t_intarray *) key->value)->values);
   FREE(key->name);
   FREE(key->value);
   FREE(key);
@@ -39,7 +43,7 @@ void		config_destroy(t_config *config)
 
   keys = (t_key **) config->keys->values;
   i = -1;
-  while(keys[++i])
+  while (keys[++i])
     key_free(keys[i]);
   array_destroy(&config->keys, false);
   FREE(config);

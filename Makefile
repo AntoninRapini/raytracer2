@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Wed May 31 11:12:23 2017 Raphaël Goulmot
+## Last update Thu Jun  1 09:33:31 2017 Raphaël Goulmot
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -24,8 +24,12 @@ SRC	=	config/boolean.c		\
 		config/config.c			\
 		config/key.c			\
 		config/array.c			\
+		config/array_converter.c	\
+		config/array_integer.c		\
+		config/array_string.c		\
 		config/free.c			\
 		config/str/str_countchar.c	\
+		config/str/str_contains.c	\
 		config/str/str_split.c		\
 		config/str/str_reduce.c		\
 		config/str/str_length.c		\
@@ -52,7 +56,6 @@ SRC	=	config/boolean.c		\
 		$(SRCDIR)/my_put_pixel.c	\
 		$(SRCDIR)/calc_dir_vector.c	\
 		$(SRCDIR)/my_getsolution.c	\
-		$(SRCDIR)/my_get_background.c	\
 		$(SRCDIR)/fill_lightray.c	\
 		$(SRCDIR)/my_get_normal.c	\
 		$(SRCDIR)/my_minimap.c		\
@@ -70,6 +73,9 @@ SRC	=	config/boolean.c		\
 		$(INIT)/my_raytracer_utils.c	\
 		$(INIT)/my_screenelem_utils.c	\
 		$(INIT)/my_scene_utils.c	\
+		$(INIT)/my_object_utils.c	\
+		$(INIT)/my_texture_utils.c	\
+		$(INIT)/my_light_utils.c	\
 		$(OBJECTS)/sphere.c		\
 		$(OBJECTS)/plane.c		\
 		$(OBJECTS)/cylinder.c		\

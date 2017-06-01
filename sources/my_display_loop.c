@@ -5,11 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-<<<<<<< HEAD
-** Last update Thu Jun  1 09:31:56 2017 Raphaël Goulmot
-=======
-** Last update Tue May 30 20:54:50 2017 Antonin Rapini
->>>>>>> a5721c3be42a3587db3d2bd01401f48ffb4d5185
+** Last update Thu Jun  1 09:34:18 2017 Raphaël Goulmot
 */
 
 #include <stdlib.h>

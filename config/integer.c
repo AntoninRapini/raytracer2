@@ -5,13 +5,14 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 17:58:31 2017 romain pillot
-** Last update Sun May 28 18:07:06 2017 romain pillot
+** Last update Wed May 31 23:47:29 2017 Antonin Rapini
 */
 
 #include "config.h"
 #include "util.h"
+#include <stdint.h>
 
-int    get_integer(t_config *config, const char *path)
+int	get_integer(t_config *config, const char *path)
 {
   t_key *key;
 
@@ -19,8 +20,8 @@ int    get_integer(t_config *config, const char *path)
   return (key ? key->integer : -1);
 }
 
-int    keyget_integer(t_key *key, const char *path)
+int	keyget_integer(t_key *key, const char *path)
 {
   key = key_resolve((t_array *) key->value, path);
-  return (key ? key->integer : -1);
+  return (key ? key->integer : 0);
 }

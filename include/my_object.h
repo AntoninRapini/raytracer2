@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon Feb 20 15:42:19 2017 Antonin Rapini
-** Last update Tue May 30 17:31:32 2017 Antonin Rapini
+** Last update Thu Jun  1 01:45:50 2017 Antonin Rapini
 */
 
 #ifndef MY_OBJECT_H_
@@ -34,6 +34,11 @@ typedef struct	s_object
   float		reflection;
   char		*diffuse_map_filename;
   t_texture	*diffuse_map;
+  char		*normal_map_filename;
+  t_texture	*normal_map;
+  sfVector3f	limited;
+  sfVector3f	max;
+  sfVector3f	min;
 }		t_object;
 
 typedef struct	s_intersect
@@ -75,21 +80,21 @@ typedef struct  s_bmpheader
 /* sphere.c */
 float intersect_sphere(t_object *, sfVector3f, sfVector3f);
 sfVector3f get_normal_sphere(t_object *, sfVector3f);
-sfVector2f get_sphere_uv(t_object *, t_ray *);
+sfVector2f get_sphere_uv(t_object *, sfVector3f);
 
 /* cone.c */
 float intersect_cone(t_object *, sfVector3f, sfVector3f);
 sfVector3f get_normal_cone(t_object *, sfVector3f);
-sfVector2f get_cone_uv(t_object *, t_ray *);
+sfVector2f get_cone_uv(t_object *, sfVector3f);
 
 /* cylinder.c */
 float intersect_cylinder(t_object *, sfVector3f, sfVector3f);
 sfVector3f get_normal_cylinder(t_object *, sfVector3f);
-sfVector2f get_cylinder_uv(t_object *, t_ray *);
+sfVector2f get_cylinder_uv(t_object *, sfVector3f);
 
 /* plane.c */
 float intersect_plane(t_object *, sfVector3f, sfVector3f);
 sfVector3f get_normal_plane(t_object *, sfVector3f);
-sfVector2f get_plane_uv(t_object *, t_ray *);
+sfVector2f get_plane_uv(t_object *, sfVector3f);
 
 #endif /* !MY_OBJECT_H_ */

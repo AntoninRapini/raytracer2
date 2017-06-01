@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 13:46:43 2017 romain pillot
-** Last update Sun May 28 16:46:41 2017 romain pillot
+** Last update Thu Jun  1 09:39:13 2017 Raphaël Goulmot
 */
 
 #include <fcntl.h>
@@ -39,13 +39,10 @@ static t_key	*apply_strategy(t_key *key, char **keys, int i)
   return (found);
 }
 
-/*
-** TODO: type string array
-*/
-static void	parse_value(t_key *key, const char *value)
+void	parse_value(t_key *key, const char *value)
 {
-  bool		b;
-  int		i;
+  bool	b;
+  int	i;
 
   b = false;
   if ((b = str_equals(value, "yes")) || str_equals(value, "no") ||
@@ -59,12 +56,14 @@ static void	parse_value(t_key *key, const char *value)
   while (value[++i])
     if (value[i] != '-' && !(value[i] >= '0' && value[i] <= '9'))
       {
+	if (parse_array(key, value))
+	  return ;
 	key->type = STRING;
 	key->value = str_dupl(value);
 	return ;
       }
-  key->type = INTEGER;
-  key->integer = nbr_parsestring(value);
+  key->integer = key->type == UNDEFINED ? nbr_parsestring(value) : key->integer;
+  key->type = key->type == UNDEFINED ? INTEGER : key->type;
 }
 
 static void	parse_line(t_config *config, const char *str)
@@ -75,16 +74,19 @@ static void	parse_line(t_config *config, const char *str)
   t_key		*key;
 
   pair = str_split(str_dupl(str), VALUE_SEPARATOR);
-  keys = str_split(pair[0], KEY_SEPARATOR);
-  if (!(key = key_find(config->keys, keys[0])))
+  if (pair && pair[0] && pair[1])
     {
-      key = key_create(keys[0], UNDEFINED, NULL);
-      array_add(config->keys, key);
+      keys = str_split(pair[0], KEY_SEPARATOR);
+      if (!(key = key_find(config->keys, keys[0])))
+	{
+	  key = key_create(keys[0], UNDEFINED, NULL);
+	  array_add(config->keys, key);
+	}
+      i = 0;
+      while (keys[++i])
+	key = apply_strategy(key, keys, i);
+      parse_value(key, str_reduce(pair[1], ' '));
     }
-  i = 0;
-  while (keys[++i])
-    key = apply_strategy(key, keys, i);
-  parse_value(key, str_reduce(pair[1], ' '));
   TAB_FREE(pair);
   FREE(keys);
 }
@@ -102,7 +104,7 @@ t_config	*config_load(const char *file_name)
   config->keys = array_create();
   while ((str = str_reduce(scan_line(fd), ' ')))
     {
-      if (*str)
+      if (*str && str_contains(str, (char [2]){VALUE_SEPARATOR, 0}))
 	parse_line(config, str);
       free(str);
     }

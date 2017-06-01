@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Feb  8 15:47:59 2017 Antonin Rapini
-** Last update Tue May 30 18:02:59 2017 Antonin Rapini
+** Last update Thu Jun  1 01:47:06 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -30,13 +30,13 @@ sfVector3f get_normal_plane(t_object *obj, sfVector3f ip)
   return (ip);
 }
 
-sfVector2f	get_plane_uv(t_object *obj, t_ray *ray)
+sfVector2f	get_plane_uv(t_object *obj, sfVector3f ip)
 {
   sfVector2f	uv;
 
-  uv.x = fabs(ray->intersect.pos.x);
-  uv.y = fabs(ray->intersect.pos.y);
-  if (obj && ray)
+  uv.x = fabs(ip.x);
+  uv.y = fabs(ip.y);
+  if (obj && ip.x)
     {
     }
   return (uv);

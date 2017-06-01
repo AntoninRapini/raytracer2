@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu Jun  1 09:31:20 2017 Raphaël Goulmot
+** Last update Thu Jun  1 09:34:59 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -88,17 +88,12 @@ void		commands(t_scene *scene, int key)
     move_object(scene, obj, key);
 }
 
-//Wait pour éviter les genre de freeze
 void		commands_off(t_scene *scene, int key)
 {
-  int		wait;
-
-  wait = 20000000;
   if (scene->key_pressed == key)
     {
       if (key == sfKeyPageUp || key == sfKeyPageDown)
 	select_object(scene, key);
-      while (wait--);
       scene->key_pressed = -1;
       scene->refresh = true;
       my_draw_screen(scene->window, scene->screen, scene);

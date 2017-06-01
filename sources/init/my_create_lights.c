@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 29 17:08:37 2017 Antonin Rapini
-** Last update Tue May 30 00:19:50 2017 Antonin Rapini
+** Last update Tue May 30 20:24:27 2017 romain pillot
 */
 
 #include <stdlib.h>
@@ -40,11 +40,10 @@ t_light		**my_create_lights(t_config *config)
   t_array	*array;
   int		i;
 
-  if (!(array = array_create()))
+  if (!(array = array_create()) ||
+      (lights = get_key(config, "lights")) == NULL ||
+      !(keys =  (t_array *) lights->value))
     return (NULL);
-  if ((lights = get_key(config, "lights")) == NULL)
-    return (NULL);
-  keys = (t_array *) lights->value;
   i = -1;
   while (((t_key **) keys->values)[++i])
     array_add(array, create_light((t_key *) keys->values[i]));
