@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 22 22:02:46 2017 Antonin Rapini
-** Last update Wed May 24 15:14:31 2017 Raphaël Goulmot
+** Last update Thu Jun  1 02:23:16 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -19,7 +19,7 @@ void *my_free_raytracer(t_raytracer *raytracer)
       if (raytracer->window)
 	sfRenderWindow_destroy(raytracer->window);
       if (raytracer->scene)
-	my_free_scene(raytracer->scene);
+	my_free_scene(raytracer->scene, NULL);
       if (raytracer->screen)
 	my_free_screenelem(raytracer->screen);
       free(raytracer);

@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Tue May 30 19:43:29 2017 romain pillot
+## Last update Thu Jun  1 03:54:40 2017 Antonin Rapini
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -56,7 +56,6 @@ SRC	=	config/boolean.c		\
 		$(SRCDIR)/my_put_pixel.c	\
 		$(SRCDIR)/calc_dir_vector.c	\
 		$(SRCDIR)/my_getsolution.c	\
-		$(SRCDIR)/my_get_background.c	\
 		$(SRCDIR)/fill_lightray.c	\
 		$(SRCDIR)/my_get_normal.c	\
 		$(SRCDIR)/my_minimap.c		\
@@ -73,6 +72,9 @@ SRC	=	config/boolean.c		\
 		$(INIT)/my_raytracer_utils.c	\
 		$(INIT)/my_screenelem_utils.c	\
 		$(INIT)/my_scene_utils.c	\
+		$(INIT)/my_object_utils.c	\
+		$(INIT)/my_texture_utils.c	\
+		$(INIT)/my_light_utils.c	\
 		$(OBJECTS)/sphere.c		\
 		$(OBJECTS)/plane.c		\
 		$(OBJECTS)/cylinder.c		\

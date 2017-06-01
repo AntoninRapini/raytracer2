@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sat May 27 23:39:34 2017 Antonin Rapini
-** Last update Mon May 29 23:57:55 2017 Antonin Rapini
+** Last update Thu Jun  1 03:57:46 2017 Antonin Rapini
 */
 
 #include "sources.h"
@@ -35,5 +35,5 @@ sfColor		my_get_reflection_color
   find_intersect(scene->objects, &reflected_ray, ray->intersect.obj_i);
   if (reflected_ray.distance != -1)
     return (my_process_light(scene, &reflected_ray));
-  return (my_get_background());
+  return (scene->background);
 }

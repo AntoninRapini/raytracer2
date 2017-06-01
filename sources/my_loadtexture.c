@@ -5,15 +5,15 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Dec 29 16:32:40 2016 Antonin Rapini
-** Last update Tue May 30 20:50:24 2017 Antonin Rapini
+** Last update Thu Jun  1 05:05:54 2017 Antonin Rapini
 */
 
 #include <unistd.h>
 #include <fcntl.h>
 #include "my_object.h"
 #include <stdlib.h>
+#include "sources.h"
 #include "utils.h"
-#include <stdio.h>
 #include <math.h>
 
 int		fill_bmpheader(t_bmpheader *header, int fd)
@@ -26,16 +26,17 @@ int		fill_bmpheader(t_bmpheader *header, int fd)
   return (0);
 }
 
-sfColor		**create_texture(unsigned char *texture, int sizex, int sizey)
+sfColor		**create_texture
+(unsigned char *texture, int sizex, int sizey, int i)
 {
   sfColor	**colors;
   int		y;
   int		x;
-  int		i;
 
   y = i = 0;
-  if ((colors = malloc(sizeof(sfColor *) * sizey)) == NULL)
+  if ((colors = malloc(sizeof(sfColor *) * (sizey + 1))) == NULL)
     return (NULL);
+  colors[sizey] = NULL;
   while (i++ < sizey)
     if ((colors[i - 1] = malloc(sizeof(sfColor) * sizex)) == NULL)
       return (NULL);
@@ -43,13 +44,13 @@ sfColor		**create_texture(unsigned char *texture, int sizex, int sizey)
   while (y++ < sizey)
     {
       x = 0;
-      while (x++ < sizex && i + 2 < (sizex * sizey) * 3)
+      while (x++ < sizex && i + 3 < (sizex * sizey) * 4)
 	{
 	  colors[y - 1][x - 1].b = texture[i];
 	  colors[y - 1][x - 1].g = texture[i + 1];
 	  colors[y - 1][x - 1].r = texture[i + 2];
-	  colors[y - 1][x - 1].a = 255;
-	  i += 3;
+	  colors[y - 1][x - 1].a = texture[i + 3];
+	  i += 4;
 	}
     }
   return (colors);
@@ -77,18 +78,17 @@ t_texture 	*my_readbmp(char *filename)
 
   if ((fd = open(filename, O_RDONLY)) != -1)
     {
-      if (fill_bmpheader(&header, fd)
-	  || (texture = malloc(sizeof(t_texture))) == NULL)
+      if (fill_bmpheader(&header, fd) || (texture = my_init_texture()) == NULL)
 	return (NULL);
       fullsize = fill_texturesize(&header, texture);
       if ((buffer = malloc(sizeof(unsigned char)
-			   * ((fullsize * 3)+ 1))) == NULL)
-	return (NULL);
-      if ((read_size = read(fd, buffer, fullsize * 3)) != fullsize * 3)
-	return (NULL);
+			   * ((fullsize * 4) + 1))) == NULL)
+	return (my_free_texture(texture));
+      if ((read_size = read(fd, buffer, fullsize * 4)) != fullsize * 4)
+	return (my_free_texture(texture));
       if ((texture->colors = create_texture
-	   (buffer, texture->size.x, texture->size.y)) == NULL)
-	return (NULL);
+	   (buffer, texture->size.x, texture->size.y, 0)) == NULL)
+	return (my_free_texture(texture));
       free(buffer);
       return (texture);
     }
@@ -106,6 +106,9 @@ int		my_loadtextures(t_object **objs)
 	{
 	  if ((objs[i]->diffuse_map =
 	       my_readbmp(objs[i]->diffuse_map_filename)) == NULL)
+	    return (1);
+	  if (objs[i]->normal_map_filename && (objs[i]->normal_map =
+					       my_readbmp(objs[i]->normal_map_filename)) == NULL)
 	    return (1);
 	}
       i++;

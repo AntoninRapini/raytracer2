@@ -5,21 +5,21 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 20:26:03 2017 romain pillot
-** Last update Wed May 31 21:59:22 2017 Antonin Rapini
+** Last update Thu Jun  1 04:17:06 2017 Antonin Rapini
 */
 
 #include "utils.h"
 #include "sources.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void *my_free_scene(t_scene *scene, t_config *config)
 {
-  config_destroy(config);
+  if (config)
+    config_destroy(config);
   if (scene)
     {
-      if (scene->objects)
-	free(scene->objects);
+      my_free_objects(scene->objects);
+      my_free_lights(scene->lights);
       if (scene->lights)
 	free(scene->lights);
       free(scene);
@@ -37,8 +37,11 @@ t_scene		*my_init_scene()
   scene->eye_rot = my_create_sfvector3f(0, 0, 0);
   scene->screen_size.x = 0;
   scene->screen_size.y = 0;
-  scene->objects = 0;
-  scene->lights = 0;
+  scene->objects = NULL;
+  scene->lights = NULL;
+  scene->background = create_color(0, 0, 0);
+  scene->window = NULL;
+  scene->screen = NULL;
   scene->refresh = true;
   scene->running = true;
   scene->key_pressed = -1;
@@ -46,7 +49,7 @@ t_scene		*my_init_scene()
   return (scene);
 }
 
-int load_scene_infos(t_scene *scene, t_config *config)
+void load_scene_infos(t_scene *scene, t_config *config)
 {
   scene->eye_pos =
     my_create_sfvector3f(
@@ -60,16 +63,10 @@ int load_scene_infos(t_scene *scene, t_config *config)
 			 get_integer(config, "properties.eye.rotation.z"));
   scene->screen_size.x = get_integer(config, "properties.screen.width");
   scene->screen_size.y = get_integer(config, "properties.screen.height");
-  scene->backgroundtype = get_integer(config,
-				      "properties.screen.backgroundtype");
-  if (scene->backgroundtype == 2)
-    {
-      if ((scene->background = my_readbmp
-	   (get_string(config,
-		       "properties.screen.backgroundfile"))) == NULL)
-	return (1);
-    }
-  return (0);
+  scene->background =
+    create_color(get_integer(config, "properties.background.r"),
+		 get_integer(config, "properties.background.g"),
+		 get_integer(config, "properties.background.b"));
 }
 
 t_scene		*my_create_scene(char *file)
@@ -80,8 +77,7 @@ t_scene		*my_create_scene(char *file)
   if ((scene = my_init_scene()) == NULL ||
       !(config = config_load(file)))
     return (NULL);
-  if (load_scene_infos(scene, config))
-    return (my_free_scene(scene, config));
+  load_scene_infos(scene, config);
   if ((scene->objects = my_create_objects(config)) == NULL)
     return (my_free_scene(scene, config));
   if ((scene->lights = my_create_lights(config)) == NULL)

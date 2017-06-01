@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 29 16:55:34 2017 Antonin Rapini
-** Last update Tue May 30 20:43:27 2017 Antonin Rapini
+** Last update Thu Jun  1 05:05:35 2017 Antonin Rapini
 */
 
 #ifndef SOURCES_H_
@@ -50,6 +50,19 @@ void my_get_transformations(t_scene *scene);
 
 sfRenderWindow *my_create_window(char *, int, int);
 
+/* my_light_utils.c */
+t_light *my_init_light();
+void *my_free_lights(t_light **);
+
+/* my_texture_utils.c */
+t_texture *my_init_texture();
+void *my_free_texture(t_texture *);
+
+/* my_object_utils.c */
+void *my_free_objects(t_object **);
+void *my_free_object(t_object *);
+t_object *my_init_object();
+
 /* my_create_objects.c */
 t_object **my_create_objects(t_config *);
 
@@ -74,13 +87,13 @@ void *my_free_screenelem(t_screenelem *);
 /* my_scene_utils.c */
 t_scene *my_create_scene(char *);
 t_scene *my_init_scene();
-void *my_free_scene();
+void *my_free_scene(t_scene *, t_config *);
 
 /*** EFFECTS ***/
 
 /* my_loadtexture.c */
 t_texture *my_readbmp(char *);
-sfColor **create_texture(unsigned char *, int, int);
+sfColor **create_texture(unsigned char *, int, int, int);
 int fill_bmpheader(t_bmpheader *, int);
 int my_loadtextures(t_object **);
 
@@ -128,6 +141,7 @@ sfColor create_color(int, int, int);
 void display_minimap(t_scene *);
 
 /* get_object_color.c */
+sfColor get_texture_color(t_object *, sfVector3f, t_texture *);
 sfColor get_object_color(t_object *, t_ray *);
 
 /* my_get_background.c */

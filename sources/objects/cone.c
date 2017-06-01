@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Sun Jan  1 16:54:57 2017 Antonin Rapini
-** Last update Tue May 30 17:33:51 2017 Antonin Rapini
+** Last update Thu Jun  1 03:41:23 2017 Antonin Rapini
 */
 
 #include <math.h>
@@ -26,19 +26,31 @@ float	intersect_cone(t_object *obj, sfVector3f pos, sfVector3f dir)
   return (my_getsolution(a, b, c));
 }
 
-sfVector3f get_normal_cone(t_object *obj, sfVector3f ip)
+sfVector3f	get_normal_cone(t_object *obj, sfVector3f ip)
 {
-  ip.z = -tan(obj->info * M_PI / 180) * ip.z;
-  return (ip);
+  sfVector3f	v;
+  float		m;
+  sfVector3f	n;
+
+  v.x = ip.x - obj->position.x;
+  v.y = 0;
+  v.z = ip.z - obj->position.z;
+  m = sqrt(pow(v.x, 2) + pow(v.z, 2));
+  v.x = v.x / m;
+  v.z = v.z / m;
+  n.x = v.x;
+  n.y = 1;
+  n.z = 1;
+  return (n);
 }
 
-sfVector2f	get_cone_uv(t_object *obj, t_ray *ray)
+sfVector2f	get_cone_uv(t_object *obj, sfVector3f ip)
 {
   sfVector2f	uv;
 
   uv.x = 0;
   uv.y = 0;
-  if (obj && ray)
+  if (obj && ip.x)
     {
     }
   return (uv);

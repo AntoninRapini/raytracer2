@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Wed Feb  8 15:12:25 2017 Antonin Rapini
-** Last update Tue May 30 19:11:48 2017 Antonin Rapini
+** Last update Thu Jun  1 01:44:01 2017 Antonin Rapini
 */
 
 #include <SFML/Graphics.h>
@@ -32,12 +32,12 @@ sfVector3f get_normal_sphere(t_object *obj, sfVector3f ip)
   return (ip);
 }
 
-sfVector2f     	get_sphere_uv(t_object *obj, t_ray *ray)
+sfVector2f     	get_sphere_uv(t_object *obj, sfVector3f ip)
 {
   sfVector2f	uv;
   sfVector3f	d;
 
-  d = norm_v3(my_add_v3(ray->intersect.pos, obj->position, -1));
+  d = norm_v3(my_add_v3(ip, obj->position, -1));
   uv.x = 0.5 + (atan2(d.z, d.x) / (M_PI * 2));
   uv.y = 0.5 - (asin(d.y) / M_PI);
   if (obj)

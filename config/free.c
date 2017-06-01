@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Sun May 28 03:15:41 2017 romain pillot
-** Last update Tue May 30 14:46:56 2017 romain pillot
+** Last update Thu Jun  1 04:54:24 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -43,7 +43,7 @@ void		config_destroy(t_config *config)
 
   keys = (t_key **) config->keys->values;
   i = -1;
-  while(keys[++i])
+  while (keys[++i])
     key_free(keys[i]);
   array_destroy(&config->keys, false);
   FREE(config);

@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 22 21:38:56 2017 Antonin Rapini
-** Last update Tue May 30 18:31:11 2017 Antonin Rapini
+** Last update Thu Jun  1 03:53:21 2017 Antonin Rapini
 */
 
 #ifndef MY_RAYTRACER_H_
@@ -21,7 +21,7 @@
 
 typedef float (*INTERSECT_FUNC)(t_object *, sfVector3f, sfVector3f);
 typedef sfVector3f (*NORMAL_FUNC)(t_object *, sfVector3f);
-typedef sfVector2f (*UV_FUNC)(t_object *, t_ray *);
+typedef sfVector2f (*UV_FUNC)(t_object *, sfVector3f);
 
 typedef struct  s_my_framebuffer
 {
@@ -50,8 +50,7 @@ typedef struct		s_scene
   sfVector2i		screen_size;
   t_object		**objects;
   t_light		**lights;
-  int			backgroundtype;
-  t_texture		*background;
+  sfColor		background;
 }			t_scene;
 
 typedef struct		s_raytracer
