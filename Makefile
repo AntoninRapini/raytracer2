@@ -5,10 +5,10 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Thu Jun  1 09:33:31 2017 Raphaël Goulmot
+## Last update Thu Jun  1 10:23:53 2017 Raphaël Goulmot
 ##
 CFLAGS	+= -Wall -Werror -Wextra
-CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
+CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include
 
 SRCDIR		= sources
 TRANSFORMS	= $(SRCDIR)/transformations
