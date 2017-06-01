@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Thu Jun  1 03:17:36 2017 Antonin Rapini
+** Last update Thu Jun  1 09:56:04 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -70,7 +70,6 @@ void		my_display_loop
 	    commands(scene, event.key.code);
 	  else if (event.type == sfEvtKeyReleased)
 	    commands_off(scene, event.key.code);
-	  my_draw_screen(scene->window, scene->screen, scene);
 	}
     }
   if (sfRenderWindow_isOpen(window))
