@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
-** Last update Thu Jun  1 09:56:04 2017 Antonin Rapini
+** Last update Thu Jun  1 09:58:09 2017 Antonin Rapini
 */
 
 #include <stdlib.h>
@@ -59,7 +59,7 @@ void		my_display_loop
   scene->window = window;
   scene->screen = screen;
   my_draw_screen(scene->window, scene->screen, scene);
-  while (scene->running && sfRenderWindow_isOpen(window))
+  while (scene->running && sfRenderWindow_isOpen(scene->window))
     {
       if (sfRenderWindow_pollEvent(scene->window, &event))
 	{

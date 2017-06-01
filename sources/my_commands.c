@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu Jun  1 09:57:10 2017 Antonin Rapini
+** Last update Thu Jun  1 09:57:55 2017 Antonin Rapini
 */
 
 #include <unistd.h>
@@ -44,10 +44,8 @@ static void	move_object(t_scene *scene, t_object *obj, int key)
       ? &obj->position.x : key == sfKeyQ || key == sfKeyD
       ? &obj->position.y : &obj->position.z;
   if (axe)
-    {
-      *axe += speed;
-      scene->refresh = true;
-    }
+    *axe += speed;
+  scene->refresh = true;
 }
 
 static void	select_object(t_scene *scene, int key)

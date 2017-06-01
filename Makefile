@@ -5,7 +5,7 @@
 ## Login   <antonin.rapini@epitech.net>
 ## 
 ## Started on  Tue Nov 29 08:50:17 2016 Antonin Rapini
-## Last update Thu Jun  1 03:54:40 2017 Antonin Rapini
+## Last update Thu Jun  1 09:33:31 2017 Raphaël Goulmot
 ##
 CFLAGS	+= -Wall -Werror -Wextra
 CFLAGS 	+= -lpthread -lm -lc_graph_prog -lX11 -I include -g3
@@ -61,6 +61,7 @@ SRC	=	config/boolean.c		\
 		$(SRCDIR)/my_minimap.c		\
 		$(SRCDIR)/my_background_worker.c	\
 		$(SRCDIR)/my_commands.c		\
+		$(SRCDIR)/my_commands_extend.c	\
 		$(SRCDIR)/my_create_window.c	\
 		$(SRCDIR)/my_process_light.c	\
 		$(SRCDIR)/my_get_dist.c		\

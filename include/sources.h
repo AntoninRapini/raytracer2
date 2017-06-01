@@ -5,7 +5,7 @@
 ** Login   <antonin.rapini@epitech.net>
 ** 
 ** Started on  Mon May 29 16:55:34 2017 Antonin Rapini
-** Last update Thu Jun  1 05:05:35 2017 Antonin Rapini
+** Last update Thu Jun  1 09:33:50 2017 Raphaël Goulmot
 */
 
 #ifndef SOURCES_H_
@@ -130,6 +130,7 @@ void launch_thread(t_scene *, pthread_t *);
 /* my_commands.c */
 void commands(t_scene *, int);
 void commands_off(t_scene *, int);
+void rotate_object(t_scene *, t_object *, int);
 
 /* my_color_utils.c */
 sfColor my_mul_colors(sfColor, sfColor);

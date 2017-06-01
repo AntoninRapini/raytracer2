@@ -5,7 +5,7 @@
 ** Login   <romain.pillot@epitech.net>
 ** 
 ** Started on  Tue May 23 13:46:43 2017 romain pillot
-** Last update Tue May 30 19:34:04 2017 romain pillot
+** Last update Thu Jun  1 09:39:13 2017 Raphaël Goulmot
 */
 
 #include <fcntl.h>
@@ -62,11 +62,8 @@ void	parse_value(t_key *key, const char *value)
 	key->value = str_dupl(value);
 	return ;
       }
-  if (key->type == UNDEFINED)
-    {
-      key->type = INTEGER;
-      key->integer = nbr_parsestring(value);
-    }
+  key->integer = key->type == UNDEFINED ? nbr_parsestring(value) : key->integer;
+  key->type = key->type == UNDEFINED ? INTEGER : key->type;
 }
 
 static void	parse_line(t_config *config, const char *str)
