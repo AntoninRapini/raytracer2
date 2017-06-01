@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu Jun  1 10:34:49 2017 Raphaël Goulmot
+** Last update Thu Jun  1 10:40:15 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -20,9 +20,11 @@ static void	move_view(t_scene *scene, int key)
   axe = 0;
   speed = key == sfKeyUp || key== sfKeyLeft ? 5 : 0;
   speed = key == sfKeyDown || key == sfKeyRight ? -5 : speed;
+  speed = sfKeyA == key ? 5 : sfKeyE == key ? -5 : 0;
   if (speed)
     axe = key == sfKeyUp || key == sfKeyDown
-      ? &scene->eye_pos.x : &scene->eye_pos.y;
+      ? &scene->eye_pos.x : sfKeyA == key || sfKeyE == key
+      ? &scene->eye_rot.z : &scene->eye_pos.y;
   if (axe)
     {
       *axe += speed;
@@ -83,7 +85,8 @@ void		commands(t_scene *scene, int key)
   else if (scene->key_pressed != key)
     return;
   if (key == sfKeyUp || key == sfKeyDown
-      || key == sfKeyLeft || key == sfKeyRight)
+      || key == sfKeyLeft || key == sfKeyRight
+      || key == sfKeyA || sfKeyE == key)
     move_view(scene, key);
   else if (scene->i_object > -1
 	   && (obj = scene->objects[scene->i_object])->type)
