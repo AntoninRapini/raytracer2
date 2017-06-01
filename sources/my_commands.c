@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu Jun  1 10:18:14 2017 Raphaël Goulmot
+** Last update Thu Jun  1 10:34:49 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -63,7 +63,7 @@ static void	select_object(t_scene *scene, int key)
   if (scene->i_object < -1)
     scene->i_object = -1;
   else if (scene->i_object > -1
-	   && (obj = scene->objects[scene->i_object])->type)
+	   && (obj = scene->objects[scene->i_object]))
     {
       obj->old_color = obj->color;
       obj->color = sfWhite;
