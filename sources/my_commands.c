@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Thu Jun  1 09:34:59 2017 Raphaël Goulmot
+** Last update Thu Jun  1 10:16:47 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -45,6 +45,8 @@ static void	move_object(t_scene *scene, t_object *obj, int key)
       ? &obj->position.y : &obj->position.z;
   if (axe)
     *axe += speed;
+  else
+    rotate_object(scene, obj, key);
   scene->refresh = true;
 }
 
