@@ -5,7 +5,7 @@
 ** Login   <raphael.goulmot@epitech.net>
 ** 
 ** Started on  Wed May 24 15:25:44 2017 Raphaël Goulmot
-** Last update Wed May 31 11:20:11 2017 Raphaël Goulmot
+** Last update Thu Jun  1 09:31:20 2017 Raphaël Goulmot
 */
 
 #include <unistd.h>
@@ -45,8 +45,6 @@ static void	move_object(t_scene *scene, t_object *obj, int key)
       ? &obj->position.y : &obj->position.z;
   if (axe)
     *axe += speed;
-  else
-    rotate_object(scene, obj, key);
   scene->refresh = true;
 }
 
@@ -103,5 +101,6 @@ void		commands_off(t_scene *scene, int key)
       while (wait--);
       scene->key_pressed = -1;
       scene->refresh = true;
+      my_draw_screen(scene->window, scene->screen, scene);
     }
 }

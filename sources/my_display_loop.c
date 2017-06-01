@@ -6,7 +6,7 @@
 ** 
 ** Started on  Thu Nov 10 09:28:15 2016 Antonin Rapini
 <<<<<<< HEAD
-** Last update Tue May 30 21:56:30 2017 Raphaël Goulmot
+** Last update Thu Jun  1 09:31:56 2017 Raphaël Goulmot
 =======
 ** Last update Tue May 30 20:54:50 2017 Antonin Rapini
 >>>>>>> a5721c3be42a3587db3d2bd01401f48ffb4d5185
@@ -58,15 +58,24 @@ void my_draw_screen(sfRenderWindow *window, t_screenelem *screen
 void		my_display_loop
 (sfRenderWindow *window, t_screenelem *screen, t_scene *scene)
 {
-  pthread_t	bg;
+  sfEvent	event;
 
   scene->window = window;
   scene->screen = screen;
   my_draw_screen(scene->window, scene->screen, scene);
-  launch_thread(scene, &bg);
-  while (scene->running && sfRenderWindow_isOpen(window))
-    if (scene->refresh)
-      my_draw_screen(scene->window, scene->screen, scene);
+  while (scene->running && sfRenderWindow_isOpen(scene->window))
+    {
+      if (sfRenderWindow_pollEvent(scene->window, &event))
+	{
+	  if (sfKeyboard_isKeyPressed(sfKeyEscape) == 1
+	      || event.type == sfEvtClosed)
+	    scene->running = false;
+	  else if (event.type == sfEvtKeyPressed)
+	    commands(scene, event.key.code);
+	  else if (event.type == sfEvtKeyReleased)
+	    commands_off(scene, event.key.code);
+	}
+    }
   if (sfRenderWindow_isOpen(window))
     sfRenderWindow_close(window);
 }
